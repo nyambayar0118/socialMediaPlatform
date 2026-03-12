@@ -4,7 +4,14 @@ using System.Text;
 
 namespace SocialMediaPlatform.Core.Domain.Enum
 {
-    internal class IdEntityType
+    /// <summary>
+    /// ID дугаартай entity-үүдийн төрлийг зааж өгдөг enum
+    /// </summary>
+    public enum IdEntityType
     {
+        Comment,
+        Group,
+        Post,
+        User
     }
 }
