@@ -1,7 +1,7 @@
 ﻿using SocialMediaPlatform.Core.Domain.DTO;
 using SocialMediaPlatform.Core.Domain.IdWrapper;
 
-namespace SocialMediaPlatform.Core.Ports.Input
+namespace SocialMediaPlatform.Reddit.Core.Ports.Input
 {
     /// <summary>
     /// Comment-ийн үйлдлүүдийн Input Port интерфейс
