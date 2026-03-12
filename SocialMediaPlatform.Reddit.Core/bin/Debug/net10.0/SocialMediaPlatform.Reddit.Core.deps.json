@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "SocialMediaPlatform.Reddit.Core/1.0.0": {
+        "dependencies": {
+          "SocialMediaPlatform.Core": "1.0.0.0"
+        },
+        "runtime": {
+          "SocialMediaPlatform.Reddit.Core.dll": {}
+        }
+      },
+      "SocialMediaPlatform.Core/1.0.0.0": {
+        "runtime": {
+          "SocialMediaPlatform.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SocialMediaPlatform.Reddit.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SocialMediaPlatform.Core/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
