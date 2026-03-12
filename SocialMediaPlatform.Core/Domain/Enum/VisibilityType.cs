@@ -4,7 +4,12 @@ using System.Text;
 
 namespace SocialMediaPlatform.Core.Domain.Enum
 {
-    internal class VisibilityType
+    /// <summary>
+    /// Visibility-г илэрхийлэх enum. Энэ нь тухайн entity-г хэн харж болохыг тодорхойлно.
+    /// </summary>
+    public enum VisibilityType
     {
+        Private,
+        Public
     }
 }
