@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="SocialMediaPlatform.Core">
+      <HintPath>..\SocialMediaPlatform.Core\bin\Debug\net10.0\SocialMediaPlatform.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
