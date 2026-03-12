@@ -8,7 +8,7 @@ namespace SocialMediaPlatform.Core.Domain.Entity
     /// <summary>
     /// Хэрэглэгчийн бичсэн сэтгэгдэл класс
     /// </summary>
-    public abstract class Comment
+    public abstract class Comment : Entity
     {
         /// <summary>
         /// Сэтгэгдлийн ID дугаар
