@@ -4,7 +4,16 @@ using System.Text;
 
 namespace SocialMediaPlatform.Core.Domain.IdWrapper
 {
-    internal class UserId
+    /// <summary>
+    /// User-ийн ID дугаарыг ялгахад зориулсан wrapper класс. Энэ нь User entity-ийн ID-г илэрхийлэх бөгөөд type safety-ийг хангахад тусална.
+    /// </summary>
+    public class UserId
     {
+        /// <summary>
+        /// User-ийн ID дугаарын утга
+        /// </summary>
+        public required uint Value { get; init; }
+
+        public override string ToString() => Value.ToString();
     }
 }
