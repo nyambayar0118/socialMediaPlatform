@@ -4,7 +4,12 @@ using System.Text;
 
 namespace SocialMediaPlatform.Core.Domain.Enum
 {
-    internal class ReactionTargetType
+    /// <summary>
+    /// Reaction дарж болох entity-үүдийн төрлийг зааж өгдөг enum
+    /// </summary>
+    public enum ReactionTargetType
     {
+        Comment,
+        Post
     }
 }
