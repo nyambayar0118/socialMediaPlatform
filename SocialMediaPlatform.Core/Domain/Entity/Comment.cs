@@ -22,5 +22,9 @@ namespace SocialMediaPlatform.Core.Domain.Entity
         /// Сэтгэгдлийн агуулга
         /// </summary>
         public required string Content { get; init; }
+        /// <summary>
+        /// Post-ний ID дугаар
+        /// </summary>
+        public required PostId PostId { get; init; }
     }
 }
