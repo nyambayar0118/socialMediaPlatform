@@ -4,7 +4,12 @@ using System.Text;
 
 namespace SocialMediaPlatform.Reddit.Core.Domain.Enum
 {
-    internal class ReactionType
+    /// <summary>
+    /// Платформ дээрх хэрэглэгчдийн сэтгэгдэлд өгч болох реакцийн төрлүүдийг тодорхойлсон enum
+    /// </summary>
+    public enum ReactionType
     {
+        Upvote,
+        Downvote
     }
 }
