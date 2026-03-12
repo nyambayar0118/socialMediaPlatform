@@ -1,0 +1,5 @@
+users|data/users.txt
+posts|data/posts.txt
+comments|data/comments.txt
+reactions|data/reactions.txt
+ids|data/ids.txt
