@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SocialMediaPlatform.Core/SocialMediaPlatform.Core.csproj" />
+  <Project Path="SocialMediaPlatform.Reddit.Core/SocialMediaPlatform.Reddit.Core.csproj" />
+</Solution>
