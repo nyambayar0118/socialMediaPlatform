@@ -1,0 +1,377 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\domain\\user\\normaluser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\domain\\user\\normaluser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\domain\\reaction\\downvote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\domain\\reaction\\downvote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\domain\\reaction\\upvote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\domain\\reaction\\upvote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\domain\\post\\timelinepost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\domain\\post\\timelinepost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\domain\\enum\\reactiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\domain\\enum\\reactiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\domain\\enum\\usertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\domain\\enum\\usertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\domain\\comment\\maincomment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\domain\\comment\\maincomment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\adapter\\sequentialidgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\adapter\\sequentialidgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\adapter\\sequentialidrepofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\adapter\\sequentialidrepofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\adapter\\reactionrepofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\adapter\\reactionrepofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\adapter\\commentrepofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\adapter\\commentrepofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\adapter\\postrepofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\adapter\\postrepofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\adapter\\userrepofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\adapter\\userrepofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\factory\\userfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\factory\\userfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\factory\\postfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\factory\\postfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\service\\reactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\service\\reactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\service\\commentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\service\\commentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\service\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\service\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\infrastructure\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\infrastructure\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|c:\\users\\acer\\desktop\\all classes\\windows\\socialmediaplatform\\socialmediaplatform.reddit.core\\infrastructure\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D87D8B31-99E7-0AA3-391D-7AE8B5992548}|SocialMediaPlatform.Reddit.Core\\SocialMediaPlatform.Reddit.Core.csproj|solutionrelative:socialmediaplatform.reddit.core\\infrastructure\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NormalUser.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\User\\NormalUser.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Domain\\User\\NormalUser.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\User\\NormalUser.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Domain\\User\\NormalUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:51:55.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Downvote.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Reaction\\Downvote.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Domain\\Reaction\\Downvote.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Reaction\\Downvote.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Domain\\Reaction\\Downvote.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:51:50.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Upvote.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Reaction\\Upvote.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Domain\\Reaction\\Upvote.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Reaction\\Upvote.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Domain\\Reaction\\Upvote.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:51:46.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TimelinePost.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Post\\TimelinePost.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Domain\\Post\\TimelinePost.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Post\\TimelinePost.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Domain\\Post\\TimelinePost.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:51:38.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ReactionType.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Enum\\ReactionType.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Domain\\Enum\\ReactionType.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Enum\\ReactionType.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Domain\\Enum\\ReactionType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:51:29.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserType.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Enum\\UserType.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Domain\\Enum\\UserType.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Enum\\UserType.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Domain\\Enum\\UserType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:51:22.197Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainComment.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Comment\\MainComment.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Domain\\Comment\\MainComment.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Domain\\Comment\\MainComment.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Domain\\Comment\\MainComment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:51:14.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SequentialIdGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\SequentialIdGenerator.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Adapter\\SequentialIdGenerator.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\SequentialIdGenerator.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Adapter\\SequentialIdGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:50:16.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SequentialIdRepoFile.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\SequentialIdRepoFile.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Adapter\\SequentialIdRepoFile.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\SequentialIdRepoFile.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Adapter\\SequentialIdRepoFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:49:39.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ReactionRepoFile.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\ReactionRepoFile.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Adapter\\ReactionRepoFile.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\ReactionRepoFile.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Adapter\\ReactionRepoFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:49:23.875Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CommentRepoFile.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\CommentRepoFile.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Adapter\\CommentRepoFile.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\CommentRepoFile.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Adapter\\CommentRepoFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:49:10.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PostRepoFile.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\PostRepoFile.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Adapter\\PostRepoFile.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\PostRepoFile.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Adapter\\PostRepoFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:49:01.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserRepoFile.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\UserRepoFile.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Adapter\\UserRepoFile.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Adapter\\UserRepoFile.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Adapter\\UserRepoFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:48:49.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UserFactory.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Factory\\UserFactory.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Factory\\UserFactory.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Factory\\UserFactory.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Factory\\UserFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:48:21.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PostFactory.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Factory\\PostFactory.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Factory\\PostFactory.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Factory\\PostFactory.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Factory\\PostFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:48:11.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ReactionService.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Service\\ReactionService.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Service\\ReactionService.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Service\\ReactionService.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Service\\ReactionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:47:52.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CommentService.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Service\\CommentService.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Service\\CommentService.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Service\\CommentService.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Service\\CommentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:47:48.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "PostService.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Service\\PostService.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Service\\PostService.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Service\\PostService.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Service\\PostService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:47:41.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Service\\UserService.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Service\\UserService.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Service\\UserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:47:37.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AppConfig.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Infrastructure\\AppConfig.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Infrastructure\\AppConfig.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Infrastructure\\AppConfig.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Infrastructure\\AppConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:34:40.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Controller.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Infrastructure\\Controller.cs",
+              "RelativeDocumentMoniker": "SocialMediaPlatform.Reddit.Core\\Infrastructure\\Controller.cs",
+              "ToolTip": "C:\\Users\\Acer\\Desktop\\All classes\\Windows\\SocialMediaPlatform\\SocialMediaPlatform.Reddit.Core\\Infrastructure\\Controller.cs",
+              "RelativeToolTip": "SocialMediaPlatform.Reddit.Core\\Infrastructure\\Controller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T10:34:31.357Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
