@@ -1,10 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SocialMediaPlatform.Core.Domain.IdWrapper;
 
-namespace SocialMediaPlatform.Core.Port.Output
+namespace SocialMediaPlatform.Reddit.Core.Ports.Output
 {
-    internal interface IIdGeneratorPort
+    /// <summary>
+    /// ID үүсгэгчийн Output Port интерфейс
+    /// </summary>
+    public interface IIdGeneratorPort
     {
+        /// <summary>Дараагийн хэрэглэгчийн ID үүсгэх</summary>
+        /// <returns>Шинэ UserId</returns>
+        UserId NextUserId();
+
+        /// <summary>Дараагийн постын ID үүсгэх</summary>
+        /// <returns>Шинэ PostId</returns>
+        PostId NextPostId();
+
+        /// <summary>Дараагийн сэтгэгдлийн ID үүсгэх</summary>
+        /// <returns>Шинэ CommentId</returns>
+        CommentId NextCommentId();
     }
 }
