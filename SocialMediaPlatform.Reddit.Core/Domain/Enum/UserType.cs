@@ -4,7 +4,12 @@ using System.Text;
 
 namespace SocialMediaPlatform.Reddit.Core.Domain.Enum
 {
-    internal class UserType
+    /// <summary>
+    /// Платформ дээрх хэрэглэгчийн төрөл буюу Role-г тодорхойлох enum
+    /// </summary>
+    public enum UserType
     {
+        Normal,
+        Admin
     }
 }
