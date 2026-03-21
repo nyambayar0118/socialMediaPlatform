@@ -1,8 +1,0 @@
-1|zadyReddits|nyambayar0118@yahoo.com|123|2026-03-04T14:39:33.3456425Z
-2|alex_thunder|alex.thunder@gmail.com|pass123|2026-03-05T08:12:44.0000000Z
-3|moonwalker99|moonwalker99@hotmail.com|qwerty|2026-03-06T17:23:11.0000000Z
-4|silent_coder|silentcoder@outlook.com|hunter2|2026-03-07T22:05:59.0000000Z
-5|pizza_lord|pizzalord@gmail.com|ilovepizza|2026-03-08T11:44:20.0000000Z
-6|neon_rabbit|neonrabbit@yahoo.com|bunny99|2026-03-09T09:31:07.0000000Z
-7|dark_syntax|darksyntax@gmail.com|syntax42|2026-03-10T15:18:33.0000000Z
-8|river_stone|riverstone@outlook.com|stone123|2026-03-11T06:55:48.0000000Z
