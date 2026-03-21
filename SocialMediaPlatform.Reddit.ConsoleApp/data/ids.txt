@@ -1,0 +1,4 @@
+Comment|15
+Group|0
+Post|10
+User|8

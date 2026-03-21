@@ -1,9 +1,3 @@
-C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.csproj.AssemblyReference.cache
-C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.AssemblyInfoInputs.cache
-C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.AssemblyInfo.cs
-C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.csproj.CoreCompileInputs.cache
-C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.sourcelink.json
 C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\bin\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.exe
 C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\bin\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.deps.json
 C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\bin\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.runtimeconfig.json
@@ -13,6 +7,12 @@ C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatfor
 C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\bin\Debug\net10.0\SocialMediaPlatform.Reddit.Core.dll
 C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\bin\Debug\net10.0\SocialMediaPlatform.Core.pdb
 C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\bin\Debug\net10.0\SocialMediaPlatform.Reddit.Core.pdb
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.csproj.AssemblyReference.cache
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.AssemblyInfoInputs.cache
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.AssemblyInfo.cs
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.sourcelink.json
 C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMe.5F392C8B.Up2Date
 C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\SocialMediaPlatform.Reddit.ConsoleApp.dll
 C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Reddit.ConsoleApp\obj\Debug\net10.0\refint\SocialMediaPlatform.Reddit.ConsoleApp.dll

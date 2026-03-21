@@ -1,0 +1,12 @@
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\bin\Debug\net10.0\SocialMediaPlatform.Core.deps.json
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\bin\Debug\net10.0\SocialMediaPlatform.Core.dll
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\bin\Debug\net10.0\SocialMediaPlatform.Core.pdb
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\obj\Debug\net10.0\SocialMediaPlatform.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\obj\Debug\net10.0\SocialMediaPlatform.Core.AssemblyInfoInputs.cache
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\obj\Debug\net10.0\SocialMediaPlatform.Core.AssemblyInfo.cs
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\obj\Debug\net10.0\SocialMediaPlatform.Core.csproj.CoreCompileInputs.cache
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\obj\Debug\net10.0\SocialMediaPlatform.Core.sourcelink.json
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\obj\Debug\net10.0\SocialMediaPlatform.Core.dll
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\obj\Debug\net10.0\refint\SocialMediaPlatform.Core.dll
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\obj\Debug\net10.0\SocialMediaPlatform.Core.pdb
+C:\Users\Acer\Desktop\All classes\Windows\SocialMediaPlatform\SocialMediaPlatform.Core\obj\Debug\net10.0\ref\SocialMediaPlatform.Core.dll

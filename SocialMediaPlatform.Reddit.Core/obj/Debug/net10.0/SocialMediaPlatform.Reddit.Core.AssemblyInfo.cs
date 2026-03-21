@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SocialMediaPlatform.Reddit.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3dc0a5b0b88b6d178c4823cd1769f8beff235378")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b33d6ba9e80db8f65b74bec8877a859b9b3a64ca")]
 [assembly: System.Reflection.AssemblyProductAttribute("SocialMediaPlatform.Reddit.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SocialMediaPlatform.Reddit.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
