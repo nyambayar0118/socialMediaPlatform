@@ -1,0 +1,348 @@
+classDiagram
+
+    %% ═══════════════════════════════════════════════════════════════════
+    %% COMPANY.CORE  (shared DLL — no platform-specific types)
+    %% ═══════════════════════════════════════════════════════════════════
+
+    %% ─── BASE ───────────────────────────────────────────────────────────
+
+    class Entity {
+        <<abstract>>
+        +CreatedAt: DateTime
+    }
+
+    %% ─── DOMAIN ─────────────────────────────────────────────────────────
+
+    class User {
+        <<abstract>>
+        +Id: UserId
+        +Username: string
+        +Email: string
+        +Password: string
+    }
+
+    class Post {
+        <<abstract>>
+        +Id: PostId
+        +AuthorId: UserId
+        +Visibility: VisibilityType
+    }
+
+    class Comment {
+        <<abstract>>
+        +Id: CommentId
+        +AuthorId: UserId
+        +PostId: PostId
+        +Content: string
+    }
+
+    class Reaction {
+        <<abstract>>
+        +TargetId: uint
+        +TargetType: ReactionTargetType
+        +AuthorId: UserId
+    }
+
+    Entity <|-- User
+    Entity <|-- Post
+    Entity <|-- Comment
+    Entity <|-- Reaction
+
+    %% ─── DTOs ───────────────────────────────────────────────────────────
+
+    class UserDTO {
+        +Id: UserId
+        +Username: string
+        +Email: string
+        +CreatedAt: DateTime
+    }
+
+    class PostDTO {
+        +Id: PostId
+        +AuthorId: UserId
+        +Visibility: VisibilityType
+        +CreatedAt: DateTime
+    }
+
+    class CommentDTO {
+        +Id: CommentId
+        +AuthorId: UserId
+        +PostId: PostId
+        +Content: string
+        +CreatedAt: DateTime
+    }
+
+    %% ─── ID WRAPPERS ────────────────────────────────────────────────────
+
+    class UserId { <<wrapper>> +Value: uint }
+    class PostId { <<wrapper>> +Value: uint }
+    class CommentId { <<wrapper>> +Value: uint }
+
+    %% ─── ENUMS ──────────────────────────────────────────────────────────
+
+    class VisibilityType { <<enum>> Public, Private }
+    class ReactionTargetType { <<enum>> Post, Comment }
+    class IdEntityType { <<enum>> User, Post, Comment }
+
+    %% ─── INPUT PORTS ────────────────────────────────────────────────────
+    %% Methods use only base types and DTOs so any platform core can
+    %% implement them without changing signatures.
+
+    class IUserServicePort {
+        <<interface>>
+        +Register(username: string, email: string, password: string): UserDTO
+        +Login(username: string, password: string): UserDTO
+        +Logout(): void
+        +GetUser(userId: UserId): UserDTO
+        +EditUser(userId: UserId, username: string, email: string): UserDTO
+        +DeleteUser(userId: UserId): void
+    }
+
+    class IPostServicePort {
+        <<interface>>
+        +CreatePost(authorId: UserId, title: string, content: string): PostDTO
+        +EditPost(postId: PostId, title: string, content: string): PostDTO
+        +DeletePost(postId: PostId): void
+        +GetPost(postId: PostId): PostDTO
+        +GetFeed(): List~PostDTO~
+    }
+
+    class ICommentServicePort {
+        <<interface>>
+        +AddComment(postId: PostId, authorId: UserId, content: string): CommentDTO
+        +DeleteComment(commentId: CommentId): void
+        +GetComments(postId: PostId): List~CommentDTO~
+    }
+
+    class IReactionServicePort {
+        <<interface>>
+        +React(targetId: uint, targetType: ReactionTargetType, userId: UserId, reactionType: string): void
+        +Unreact(targetId: uint, targetType: ReactionTargetType, userId: UserId): void
+        +GetReactionCount(targetId: uint, targetType: ReactionTargetType): Dictionary~string, uint~
+        +HasReacted(targetId: uint, targetType: ReactionTargetType, userId: UserId): bool
+    }
+
+    %% ─── OUTPUT PORTS ───────────────────────────────────────────────────
+
+    class IIdGeneratorPort {
+        <<interface>>
+        +NextUserId(): UserId
+        +NextPostId(): PostId
+        +NextCommentId(): CommentId
+    }
+
+    class IUserRepoPort {
+        <<interface>>
+        +Save(user: User): void
+        +FindById(userId: UserId): User
+        +FindByUsername(username: string): User
+        +Update(user: User): void
+        +Delete(userId: UserId): void
+    }
+
+    class IPostRepoPort {
+        <<interface>>
+        +Save(post: Post): void
+        +FindById(postId: PostId): Post
+        +FindAll(): List~Post~
+        +Update(post: Post): void
+        +Delete(postId: PostId): void
+    }
+
+    class ICommentRepoPort {
+        <<interface>>
+        +Save(comment: Comment): void
+        +FindById(commentId: CommentId): Comment
+        +FindByPost(postId: PostId): List~Comment~
+        +Delete(commentId: CommentId): void
+    }
+
+    class IReactionRepoPort {
+        <<interface>>
+        +Save(reaction: Reaction): void
+        +Delete(targetId: uint, authorId: UserId): void
+        +CountByTarget(targetId: uint, targetType: ReactionTargetType): Dictionary~string, uint~
+        +ExistsByUserAndTarget(userId: UserId, targetId: uint, targetType: ReactionTargetType): bool
+    }
+
+    class ISequentialIdRepoPort {
+        <<interface>>
+        +GetLastId(entityType: IdEntityType): uint
+        +SaveLastId(entityType: IdEntityType, value: uint): void
+    }
+
+    %% ─── SESSION ────────────────────────────────────────────────────────
+
+    class Session {
+        <<singleton>>
+        -instance: Session
+        -currentUser: UserDTO
+        +GetInstance(): Session
+        +Login(user: UserDTO): void
+        +Logout(): void
+        +GetCurrentUser(): UserDTO
+        +IsLoggedIn(): bool
+    }
+
+
+    %% ═══════════════════════════════════════════════════════════════════
+    %% REDDIT.CORE  (forum platform — depends on COMPANY.CORE)
+    %% ═══════════════════════════════════════════════════════════════════
+
+    %% ─── DOMAIN: Concrete entities ──────────────────────────────────────
+
+    class ForumPost {
+        +Title: string
+        +Content: string
+    }
+
+    class ForumComment {
+    }
+
+    class NormalUser {
+    }
+
+    class AdminUser {
+        +CanDeleteAnyPost: bool
+        +CanBanUsers: bool
+    }
+
+    class Upvote {
+    }
+
+    class Downvote {
+    }
+
+    Post <|-- ForumPost
+    Comment <|-- ForumComment
+    User <|-- NormalUser
+    User <|-- AdminUser
+    Reaction <|-- Upvote
+    Reaction <|-- Downvote
+
+    %% ─── DTOs ───────────────────────────────────────────────────────────
+
+    class TimelinePostDTO {
+        +Title: string
+        +Content: string
+    }
+
+    PostDTO <|-- TimelinePostDTO
+
+    %% ─── ENUMS ──────────────────────────────────────────────────────────
+
+    class UserType { <<enum>> Normal, Admin }
+    class ReactionType { <<enum>> Upvote, Downvote }
+
+    %% ─── FACTORIES ──────────────────────────────────────────────────────
+
+    class UserFactory {
+        +Create(type: UserType, id: UserId, username: string, email: string, password: string): User
+    }
+
+    class PostFactory {
+        +Create(id: PostId, authorId: UserId, title: string, content: string): ForumPost
+    }
+
+    %% ─── SERVICES ───────────────────────────────────────────────────────
+
+    class UserService {
+        -repo: IUserRepoPort
+        -idGenerator: IIdGeneratorPort
+        -factory: UserFactory
+        +UserService(repo: IUserRepoPort, idGenerator: IIdGeneratorPort, factory: UserFactory)
+    }
+
+    class PostService {
+        -repo: IPostRepoPort
+        -idGenerator: IIdGeneratorPort
+        -factory: PostFactory
+        +PostService(repo: IPostRepoPort, idGenerator: IIdGeneratorPort, factory: PostFactory)
+    }
+
+    class CommentService {
+        -repo: ICommentRepoPort
+        -idGenerator: IIdGeneratorPort
+        +CommentService(repo: ICommentRepoPort, idGenerator: IIdGeneratorPort)
+    }
+
+    class ReactionService {
+        -repo: IReactionRepoPort
+        +ReactionService(repo: IReactionRepoPort)
+    }
+
+    IUserServicePort <|.. UserService
+    IPostServicePort <|.. PostService
+    ICommentServicePort <|.. CommentService
+    IReactionServicePort <|.. ReactionService
+
+    UserService --> UserFactory
+    UserService --> IUserRepoPort
+    UserService --> IIdGeneratorPort
+    PostService --> PostFactory
+    PostService --> IPostRepoPort
+    PostService --> IIdGeneratorPort
+    CommentService --> ICommentRepoPort
+    CommentService --> IIdGeneratorPort
+    ReactionService --> IReactionRepoPort
+
+    %% ─── ADAPTERS ───────────────────────────────────────────────────────
+
+    class SequentialIdGenerator {
+        -repo: ISequentialIdRepoPort
+        +SequentialIdGenerator(repo: ISequentialIdRepoPort)
+    }
+
+    class UserRepoFile { -filePath: string }
+    class PostRepoFile { -filePath: string }
+    class CommentRepoFile { -filePath: string }
+    class ReactionRepoFile { -filePath: string }
+    class SequentialIdRepoFile { -filePath: string }
+
+    IIdGeneratorPort <|.. SequentialIdGenerator
+    SequentialIdGenerator --> ISequentialIdRepoPort
+    ISequentialIdRepoPort <|.. SequentialIdRepoFile
+    IUserRepoPort <|.. UserRepoFile
+    IPostRepoPort <|.. PostRepoFile
+    ICommentRepoPort <|.. CommentRepoFile
+    IReactionRepoPort <|.. ReactionRepoFile
+
+    %% ─── INFRASTRUCTURE ─────────────────────────────────────────────────
+
+    class Controller {
+        -userService: IUserServicePort
+        -postService: IPostServicePort
+        -commentService: ICommentServicePort
+        -reactionService: IReactionServicePort
+        -session: Session
+        +Register(username: string, email: string, password: string): void
+        +Login(username: string, password: string): void
+        +Logout(): void
+        +CreatePost(title: string, content: string): PostDTO
+        +EditPost(postId: PostId, title: string, content: string): PostDTO
+        +DeletePost(postId: PostId): void
+        +GetFeed(): List~PostDTO~
+        +AddComment(postId: PostId, content: string): CommentDTO
+        +DeleteComment(commentId: CommentId): void
+        +GetComments(postId: PostId): List~CommentDTO~
+        +React(targetId: uint, targetType: ReactionTargetType, type: ReactionType): void
+        +Unreact(targetId: uint, targetType: ReactionTargetType): void
+        +GetReactionCount(targetId: uint, targetType: ReactionTargetType): Dictionary~string, uint~
+    }
+
+    class AppConfig {
+        -controller: Controller
+        +AppConfig(configPath: string)
+        +GetController(): Controller
+        -ReadConfig(path: string): Dictionary~string, string~
+    }
+
+    class Program { +Main(): void }
+
+    Controller --> Session
+    Controller --> IUserServicePort
+    Controller --> IPostServicePort
+    Controller --> ICommentServicePort
+    Controller --> IReactionServicePort
+    AppConfig --> Controller
+    Program --> AppConfig
