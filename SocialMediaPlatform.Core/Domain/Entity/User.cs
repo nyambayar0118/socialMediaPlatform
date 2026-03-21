@@ -26,5 +26,9 @@ namespace SocialMediaPlatform.Core.Domain.Entity
         /// Хэрэглэгчийн нууц үг
         /// </summary>
         public required string Password { get; set; }
+        /// <summary>
+        /// Хэрэглэгчийн профайл зурагны файлын зам
+        /// </summary>
+        public required string ProfilePicturePath { get; set; } = string.Empty;
     }
 }

@@ -19,6 +19,7 @@ classDiagram
         +Username: string
         +Email: string
         +Password: string
+        +ProfilePicturePath: string
     }
 
     class Post {
@@ -55,6 +56,7 @@ classDiagram
         +Username: string
         +Email: string
         +CreatedAt: DateTime
+        +ProfilePicturePath: string
     }
 
     class PostDTO {
@@ -82,11 +84,11 @@ classDiagram
 
     class VisibilityType { <<enum>> Public, Private }
     class ReactionTargetType { <<enum>> Post, Comment }
+    class ReactionType { <<enum>> Upvote, Downvote }
     class IdEntityType { <<enum>> User, Post, Comment }
+    class UserType { <<enum>> Normal, Admin }
 
     %% ─── INPUT PORTS ────────────────────────────────────────────────────
-    %% Methods use only base types and DTOs so any platform core can
-    %% implement them without changing signatures.
 
     class IUserServicePort {
         <<interface>>
@@ -94,6 +96,7 @@ classDiagram
         +Login(username: string, password: string): UserDTO
         +Logout(): void
         +GetUser(userId: UserId): UserDTO
+        +GetAllUsers(): List~UserDTO~
         +EditUser(userId: UserId, username: string, email: string): UserDTO
         +DeleteUser(userId: UserId): void
     }
@@ -116,10 +119,10 @@ classDiagram
 
     class IReactionServicePort {
         <<interface>>
-        +React(targetId: uint, targetType: ReactionTargetType, userId: UserId, reactionType: string): void
+        +React(targetId: uint, targetType: ReactionTargetType, userId: UserId, reactionType: ReactionType): void
         +Unreact(targetId: uint, targetType: ReactionTargetType, userId: UserId): void
         +GetReactionCount(targetId: uint, targetType: ReactionTargetType): Dictionary~string, uint~
-        +HasReacted(targetId: uint, targetType: ReactionTargetType, userId: UserId): bool
+        +HasReacted(targetId: uint, targetType: ReactionTargetType, userId: UserId, reactionType: ReactionType): bool
     }
 
     %% ─── OUTPUT PORTS ───────────────────────────────────────────────────
@@ -136,6 +139,7 @@ classDiagram
         +Save(user: User): void
         +FindById(userId: UserId): User
         +FindByUsername(username: string): User
+        +FindAll(): List~User~
         +Update(user: User): void
         +Delete(userId: UserId): void
     }
@@ -160,7 +164,7 @@ classDiagram
     class IReactionRepoPort {
         <<interface>>
         +Save(reaction: Reaction): void
-        +Delete(targetId: uint, authorId: UserId): void
+        +Delete(targetId: uint, targetType: ReactionTargetType, authorId: UserId): void
         +CountByTarget(targetId: uint, targetType: ReactionTargetType): Dictionary~string, uint~
         +ExistsByUserAndTarget(userId: UserId, targetId: uint, targetType: ReactionTargetType): bool
     }
@@ -229,15 +233,10 @@ classDiagram
 
     PostDTO <|-- TimelinePostDTO
 
-    %% ─── ENUMS ──────────────────────────────────────────────────────────
-
-    class UserType { <<enum>> Normal, Admin }
-    class ReactionType { <<enum>> Upvote, Downvote }
-
     %% ─── FACTORIES ──────────────────────────────────────────────────────
 
     class UserFactory {
-        +Create(type: UserType, id: UserId, username: string, email: string, password: string): User
+        +Create(type: UserType, id: UserId, username: string, email: string, password: string, profilepicturepath: string): User
     }
 
     class PostFactory {
@@ -318,9 +317,13 @@ classDiagram
         +Register(username: string, email: string, password: string): void
         +Login(username: string, password: string): void
         +Logout(): void
+        +GetUser(userId: UserId): UserDTO
+        +GetAllUsers(): List~UserDTO~
+        +EditUser(userId: UserId, username: string, email: string): UserDTO
         +CreatePost(title: string, content: string): PostDTO
         +EditPost(postId: PostId, title: string, content: string): PostDTO
         +DeletePost(postId: PostId): void
+        +GetPost(postId: PostId): PostDTO
         +GetFeed(): List~PostDTO~
         +AddComment(postId: PostId, content: string): CommentDTO
         +DeleteComment(commentId: CommentId): void
@@ -328,6 +331,7 @@ classDiagram
         +React(targetId: uint, targetType: ReactionTargetType, type: ReactionType): void
         +Unreact(targetId: uint, targetType: ReactionTargetType): void
         +GetReactionCount(targetId: uint, targetType: ReactionTargetType): Dictionary~string, uint~
+        +HasReacted(targetId: uint, targetType: ReactionTargetType, type: ReactionType, userId: UserId): bool
     }
 
     class AppConfig {

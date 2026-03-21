@@ -16,9 +16,10 @@ namespace SocialMediaPlatform.Reddit.Core.Factory
         /// <param name="username">Хэрэглэгчийн нэр</param>
         /// <param name="email">Имэйл хаяг</param>
         /// <param name="password">Нууц үг</param>
+        /// <param name="profilepicturepath">Профайл зурагны зам</param>
         /// <returns>Үүсгэгдсэн хэрэглэгчийн объект</returns>
         /// <exception cref="ArgumentException">Тодорхойгүй хэрэглэгчийн төрөл</exception>
-        public User Create(UserType type, UserId id, string username, string email, string password)
+        public User Create(UserType type, UserId id, string username, string email, string password, string profilepicturepath)
         {
             return type switch
             {
@@ -28,7 +29,8 @@ namespace SocialMediaPlatform.Reddit.Core.Factory
                     Username = username,
                     Email = email,
                     Password = password,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow,
+                    ProfilePicturePath = profilepicturepath
                 },
                 _ => throw new ArgumentException($"Тодорхойгүй хэрэглэгчийн төрөл: {type}")
             };
