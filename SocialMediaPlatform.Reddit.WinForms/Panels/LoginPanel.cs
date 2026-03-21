@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace SocialMediaPlatform.Reddit.WinForms.Panels
+{
+    public partial class LoginPanel : UserControl
+    {
+        public LoginPanel()
+        {
+            InitializeComponent();
+        }
+    }
+}
