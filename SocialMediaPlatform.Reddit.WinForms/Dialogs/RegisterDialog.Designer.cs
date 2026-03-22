@@ -4,7 +4,6 @@
     {
         private System.ComponentModel.IContainer components = null;
 
-        // CONTROLS
         private Label titleLabel;
         private Label subtitleLabel;
         private Label usernameLabel;
@@ -28,7 +27,6 @@
 
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             titleLabel = new Label();
             subtitleLabel = new Label();
             usernameLabel = new Label();
@@ -42,108 +40,122 @@
             errorLabel = new Label();
             registerButton = new Button();
             cancelButton = new Button();
+            SuspendLayout();
 
-            // ─── FORM ──────────────────────────────────────────────────
-            Text = "Register";
-            ClientSize = new Size(360, 420);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            StartPosition = FormStartPosition.CenterParent;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            AutoScaleMode = AutoScaleMode.Font;
-            Padding = new Padding(32, 28, 32, 28);
-
-            int left = 32;
-            int width = 296;
-            int y = 28;
-
-            // TITLE
-            titleLabel.Text = "Create account";
-            titleLabel.Font = new Font(Font.FontFamily, 13f, FontStyle.Bold);
+            // titleLabel
             titleLabel.AutoSize = true;
-            titleLabel.Location = new Point(left, y);
-            y += 28;
+            titleLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            titleLabel.Location = new Point(32, 28);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Text = "Create account";
 
-            // SUBTITLE
-            subtitleLabel.Text = "Fill in your details to register";
-            subtitleLabel.Font = new Font(Font.FontFamily, 9f);
-            subtitleLabel.ForeColor = SystemColors.GrayText;
+            // subtitleLabel
             subtitleLabel.AutoSize = true;
-            subtitleLabel.Location = new Point(left, y);
-            y += 28;
+            subtitleLabel.ForeColor = SystemColors.GrayText;
+            subtitleLabel.Location = new Point(32, 56);
+            subtitleLabel.Name = "subtitleLabel";
+            subtitleLabel.Text = "Fill in your details to register";
 
-            // USERNAME
-            usernameLabel.Text = "Username";
+            // usernameLabel
             usernameLabel.AutoSize = true;
-            usernameLabel.Location = new Point(left, y);
-            y += 20;
+            usernameLabel.Location = new Point(32, 84);
+            usernameLabel.Name = "usernameLabel";
+            usernameLabel.Text = "Username";
 
-            usernameField.Location = new Point(left, y);
-            usernameField.Width = width;
-            y += 30;
+            // usernameField
+            usernameField.Location = new Point(32, 104);
+            usernameField.Name = "usernameField";
+            usernameField.Size = new Size(296, 27);
+            usernameField.TabIndex = 0;
 
-            // EMAIl
-            emailLabel.Text = "Email";
+            // emailLabel
             emailLabel.AutoSize = true;
-            emailLabel.Location = new Point(left, y);
-            y += 20;
+            emailLabel.Location = new Point(32, 134);
+            emailLabel.Name = "emailLabel";
+            emailLabel.Text = "Email";
 
-            emailField.Location = new Point(left, y);
-            emailField.Width = width;
-            y += 30;
+            // emailField
+            emailField.Location = new Point(32, 154);
+            emailField.Name = "emailField";
+            emailField.Size = new Size(296, 27);
+            emailField.TabIndex = 1;
 
-            // PASSWORD
-            passwordLabel.Text = "Password";
+            // passwordLabel
             passwordLabel.AutoSize = true;
-            passwordLabel.Location = new Point(left, y);
-            y += 20;
+            passwordLabel.Location = new Point(32, 184);
+            passwordLabel.Name = "passwordLabel";
+            passwordLabel.Text = "Password";
 
-            passwordField.Location = new Point(left, y);
-            passwordField.Width = width;
+            // passwordField
+            passwordField.Location = new Point(32, 204);
+            passwordField.Name = "passwordField";
+            passwordField.Size = new Size(296, 27);
+            passwordField.TabIndex = 2;
             passwordField.PasswordChar = '●';
-            y += 30;
 
-            // CONFIRM PASSWORD
-            confirmPasswordLabel.Text = "Confirm password";
+            // confirmPasswordLabel
             confirmPasswordLabel.AutoSize = true;
-            confirmPasswordLabel.Location = new Point(left, y);
-            y += 20;
+            confirmPasswordLabel.Location = new Point(32, 234);
+            confirmPasswordLabel.Name = "confirmPasswordLabel";
+            confirmPasswordLabel.Text = "Confirm password";
 
-            confirmPasswordField.Location = new Point(left, y);
-            confirmPasswordField.Width = width;
+            // confirmPasswordField
+            confirmPasswordField.Location = new Point(32, 254);
+            confirmPasswordField.Name = "confirmPasswordField";
+            confirmPasswordField.Size = new Size(296, 27);
+            confirmPasswordField.TabIndex = 3;
             confirmPasswordField.PasswordChar = '●';
-            y += 30;
 
-            // ERROR LABEL
-            errorLabel.Text = " ";
-            errorLabel.ForeColor = Color.Red;
+            // errorLabel
             errorLabel.AutoSize = true;
-            errorLabel.Location = new Point(left, y);
-            y += 24;
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(32, 290);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Text = "";
 
-            // ACTION BUTTONS
+            // cancelButton
+            cancelButton.Location = new Point(160, 318);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(80, 28);
+            cancelButton.TabIndex = 4;
             cancelButton.Text = "Cancel";
-            cancelButton.Width = 80;
-            cancelButton.Height = 28;
-            cancelButton.Location = new Point(left + width - 80 - 88, y);
             cancelButton.Click += cancelButton_Click;
 
+            // registerButton
+            registerButton.Location = new Point(248, 318);
+            registerButton.Name = "registerButton";
+            registerButton.Size = new Size(80, 28);
+            registerButton.TabIndex = 5;
             registerButton.Text = "Register";
-            registerButton.Width = 80;
-            registerButton.Height = 28;
-            registerButton.Location = new Point(left + width - 80, y);
             registerButton.Click += registerButton_Click;
 
-            // BIND
-            Controls.AddRange([
-                titleLabel, subtitleLabel,
-                usernameLabel, usernameField,
-                emailLabel, emailField,
-                passwordLabel, passwordField,
-                confirmPasswordLabel, confirmPasswordField,
-                errorLabel,
-                cancelButton, registerButton
-            ]);
+            // RegisterDialog
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(360, 370);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "RegisterDialog";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Register";
+
+            Controls.Add(titleLabel);
+            Controls.Add(subtitleLabel);
+            Controls.Add(usernameLabel);
+            Controls.Add(usernameField);
+            Controls.Add(emailLabel);
+            Controls.Add(emailField);
+            Controls.Add(passwordLabel);
+            Controls.Add(passwordField);
+            Controls.Add(confirmPasswordLabel);
+            Controls.Add(confirmPasswordField);
+            Controls.Add(errorLabel);
+            Controls.Add(cancelButton);
+            Controls.Add(registerButton);
+
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }
