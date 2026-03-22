@@ -15,6 +15,6 @@ namespace SocialMediaPlatform.Core.Domain.DTO
         string Username,
         string Email,
         DateTime CreatedAt,
-        string ProfilePicturePath
+        string? ProfilePicturePath
     );
 }
