@@ -29,6 +29,12 @@ namespace SocialMediaPlatform.Reddit.Core.Ports.Input
         /// <returns>Хэрэглэгчийн DTO</returns>
         UserDTO GetUser(UserId userId);
 
+        /// <summary>
+        /// Систем дээрх бүх хэрэглэгчдийн мэдээллийг авах
+        /// </summary>
+        /// <returns>Хэрэглэгчдийн DTO жагсаалт</returns>
+        List<UserDTO> GetAllUsers();
+
         /// <summary>Хэрэглэгчийн мэдээлэл засварлах</summary>
         /// <param name="userId">Хэрэглэгчийн ID дугаар</param>
         /// <param name="username">Шинэ хэрэглэгчийн нэр</param>

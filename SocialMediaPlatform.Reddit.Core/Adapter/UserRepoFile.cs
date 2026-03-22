@@ -92,6 +92,15 @@ namespace SocialMediaPlatform.Reddit.Core.Adapters.File
             System.IO.File.WriteAllLines(_filePath, lines);
         }
 
+        public List<User> FindAll()
+        {
+            return System.IO.File.ReadAllLines(_filePath)
+                .Where(line => !string.IsNullOrWhiteSpace(line))
+                .Select(Deserialize)
+                .Cast<User>()
+                .ToList();
+        }
+
         /// <summary>User объектыг мөр болгох</summary>
         /// <param name="user">Хэрэглэгчийн объект</param>
         private static string Serialize(User user)
@@ -113,7 +122,8 @@ namespace SocialMediaPlatform.Reddit.Core.Adapters.File
                 Username = parts[1],
                 Email = parts[2],
                 Password = parts[3],
-                CreatedAt = DateTime.Parse(parts[4])
+                CreatedAt = DateTime.Parse(parts[4]),
+                ProfilePicturePath = parts[5]
             };
         }
     }

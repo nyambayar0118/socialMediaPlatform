@@ -29,5 +29,9 @@ namespace SocialMediaPlatform.Reddit.Core.Ports.Output
         /// <summary>Хэрэглэгч устгах</summary>
         /// <param name="userId">Устгах хэрэглэгчийн ID дугаар</param>
         void Delete(UserId userId);
+
+        /// <summary>Бүх хэрэглэгчдийг авах</summary>
+        /// <returns>Хэрэглэгчдийн жагсаалт</returns>
+        List<User> FindAll();
     }
 }

@@ -32,9 +32,9 @@ namespace SocialMediaPlatform.Reddit.Core.Service
         public UserDTO Register(string username, string email, string password)
         {
             var id = _idGenerator.NextUserId();
-            var user = _factory.Create(UserType.Normal, id, username, email, password);
+            var user = _factory.Create(UserType.Normal, id, username, email, password, "");
             _repo.Save(user);
-            return new UserDTO(user.Id, user.Username, user.Email, user.CreatedAt);
+            return new UserDTO(user.Id, user.Username, user.Email, user.CreatedAt, user.ProfilePicturePath);
         }
 
         /// <summary>Хэрэглэгч нэвтрэх</summary>
@@ -47,7 +47,7 @@ namespace SocialMediaPlatform.Reddit.Core.Service
             var user = _repo.FindByUsername(username);
             if (user.Password != password)
                 throw new UnauthorizedAccessException("Нууц үг буруу байна");
-            return new UserDTO(user.Id, user.Username, user.Email, user.CreatedAt);
+            return new UserDTO(user.Id, user.Username, user.Email, user.CreatedAt, user.ProfilePicturePath);
         }
 
         /// <summary>Хэрэглэгч гарах</summary>
@@ -59,7 +59,7 @@ namespace SocialMediaPlatform.Reddit.Core.Service
         public UserDTO GetUser(UserId userId)
         {
             var user = _repo.FindById(userId);
-            return new UserDTO(user.Id, user.Username, user.Email, user.CreatedAt);
+            return new UserDTO(user.Id, user.Username, user.Email, user.CreatedAt, user.ProfilePicturePath);
         }
 
         /// <summary>Хэрэглэгчийн мэдээлэл засварлах</summary>
@@ -76,10 +76,11 @@ namespace SocialMediaPlatform.Reddit.Core.Service
                 Username = user.Username,
                 Email = email,
                 Password = user.Password,
-                CreatedAt = user.CreatedAt
+                CreatedAt = user.CreatedAt,
+                ProfilePicturePath = user.ProfilePicturePath
             };
             _repo.Update(updated);
-            return new UserDTO(updated.Id, updated.Username, updated.Email, updated.CreatedAt);
+            return new UserDTO(updated.Id, updated.Username, updated.Email, updated.CreatedAt, updated.ProfilePicturePath);
         }
 
         /// <summary>Хэрэглэгч устгах</summary>
@@ -87,6 +88,12 @@ namespace SocialMediaPlatform.Reddit.Core.Service
         public void DeleteUser(UserId userId)
         {
             _repo.Delete(userId);
+        }
+
+        List<UserDTO> IUserServicePort.GetAllUsers()
+        {
+            var users = _repo.FindAll();
+            return users.Select(u => new UserDTO(u.Id, u.Username, u.Email, u.CreatedAt, u.ProfilePicturePath)).ToList();
         }
     }
 }
