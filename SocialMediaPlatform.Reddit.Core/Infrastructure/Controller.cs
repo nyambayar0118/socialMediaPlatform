@@ -144,5 +144,27 @@ namespace SocialMediaPlatform.Reddit.Core.Infrastructure
         {
             return _reactionService.GetReactionCount(targetId, targetType);
         }
+
+        /// <summary>Хэрэглэгчийн мэдээлэл засварлах</summary>
+        /// <param name="userId">Хэрэглэгчийн ID дугаар</param>
+        /// <param name="username">Шинэ хэрэглэгчийн нэр</param>
+        /// <param name="email">Шинэ имэйл хаяг</param>
+        /// <returns>Засварласан хэрэглэгчийн DTO</returns>
+        public UserDTO EditUser(UserId userId, string username, string email)
+        {
+            return _userService.EditUser(userId, username, email);
+        }
+
+        /// <summary>Хэрэглэгчийн мэдээллийг ID дугаараар авах</summary>
+        public UserDTO GetUser(UserId userId)
+        {
+            return _userService.GetUser(userId);
+        }
+
+        /// <summary>Бүх хэрэглэгчдийн жагсаалт авах</summary>
+        public List<UserDTO> GetAllUsers()
+        {
+            return _userService.GetAllUsers();
+        }
     }
 }
