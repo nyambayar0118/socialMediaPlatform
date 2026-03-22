@@ -2,38 +2,103 @@
 {
     partial class CreateEditPostDialog
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        private Label titleLabel;
+        private Label contentLabel;
+        private TextBox titleField;
+        private RichTextBox contentArea;
+        private Label errorLabel;
+        private Button cancelButton;
+        private Button submitButton;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "CreateEditPostDialog";
-        }
+            titleLabel = new Label();
+            contentLabel = new Label();
+            titleField = new TextBox();
+            contentArea = new RichTextBox();
+            errorLabel = new Label();
+            cancelButton = new Button();
+            submitButton = new Button();
+            SuspendLayout();
 
-        #endregion
+            // titleLabel
+            titleLabel.AutoSize = true;
+            titleLabel.Location = new Point(28, 24);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Text = "Title";
+
+            // titleField
+            titleField.Location = new Point(28, 48);
+            titleField.Name = "titleField";
+            titleField.Size = new Size(464, 27);
+            titleField.TabIndex = 0;
+
+            // contentLabel
+            contentLabel.AutoSize = true;
+            contentLabel.Location = new Point(28, 90);
+            contentLabel.Name = "contentLabel";
+            contentLabel.Text = "Content";
+
+            // contentArea
+            contentArea.Location = new Point(28, 114);
+            contentArea.Name = "contentArea";
+            contentArea.Size = new Size(464, 160);
+            contentArea.ScrollBars = RichTextBoxScrollBars.Vertical;
+            contentArea.TabIndex = 1;
+
+            // errorLabel
+            errorLabel.AutoSize = true;
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(28, 286);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Text = "";
+
+            // cancelButton
+            cancelButton.Location = new Point(324, 318);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(80, 28);
+            cancelButton.TabIndex = 2;
+            cancelButton.Text = "Cancel";
+            cancelButton.Click += cancelButton_Click;
+
+            // submitButton
+            submitButton.Location = new Point(412, 318);
+            submitButton.Name = "submitButton";
+            submitButton.Size = new Size(80, 28);
+            submitButton.TabIndex = 3;
+            submitButton.Text = "Post";
+            submitButton.Click += submitButton_Click;
+
+            // CreateEditPostDialog
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(520, 370);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "CreateEditPostDialog";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "New post";
+
+            Controls.Add(titleLabel);
+            Controls.Add(titleField);
+            Controls.Add(contentLabel);
+            Controls.Add(contentArea);
+            Controls.Add(errorLabel);
+            Controls.Add(cancelButton);
+            Controls.Add(submitButton);
+
+            ResumeLayout(false);
+            PerformLayout();
+        }
     }
 }

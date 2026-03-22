@@ -8,7 +8,7 @@ namespace SocialMediaPlatform.Reddit.WinForms
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Dialogs.RegisterDialog(null!));
+            Application.Run(new Dialogs.CreateEditPostDialog(null!));
             //// ─── CONFIG FILE SETUP ────────────────────────────────────
             //if (!File.Exists("config.txt"))
             //{
