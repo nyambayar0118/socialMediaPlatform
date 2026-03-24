@@ -106,7 +106,7 @@ namespace SocialMediaPlatform.Reddit.Core.Adapters.File
         private static string Serialize(User user)
         {
             if (user is NormalUser normal)
-                return $"{normal.Id.Value}|{normal.Username}|{normal.Email}|{normal.Password}|{normal.CreatedAt:O}";
+                return $"{normal.Id.Value}|{normal.Username}|{normal.Email}|{normal.Password}|{normal.CreatedAt:O}|{normal.ProfilePicturePath}";
 
             throw new ArgumentException($"Undefined User type: {user.GetType().Name}");
         }
@@ -123,7 +123,7 @@ namespace SocialMediaPlatform.Reddit.Core.Adapters.File
                 Email = parts[2],
                 Password = parts[3],
                 CreatedAt = DateTime.Parse(parts[4]),
-                ProfilePicturePath = parts[5]
+                ProfilePicturePath = parts.Length > 5 ? parts[5] : ""
             };
         }
     }
