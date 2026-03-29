@@ -5,11 +5,26 @@ using System.Drawing.Imaging;
 
 namespace ProfilePictureProcessor;
 
+/// <summary>
+/// Зураг боловсруулах класс.
+/// </summary>
 public class ProfilePictureProcessor
 {
+    /// <summary>
+    /// Зургийн хамгийн бага хэмжээ.
+    /// </summary>
     public const int MinimumSize = 512;
+    /// <summary>
+    /// Зургийн байх ёстой хэмжээ.
+    /// </summary>
     public const int TargetSize = 512;
 
+    /// <summary>
+    /// Зургийг боловсруулах метод-ийн wrapper метод.
+    /// </summary>
+    /// <param name="inputPath"> Боловсруулах зургийн зам. </param>
+    /// <param name="outputPath"> Боловсруулсан зургийг хадгалах зам. </param>
+    /// <returns> Үр дүнг илэрхийлэх record. </returns>
     public static ProcessResult Process(string inputPath, string outputPath) 
     { 
         if(!File.Exists(inputPath))
@@ -27,6 +42,12 @@ public class ProfilePictureProcessor
             return ProcessResult.Fail($"Зураг унших үед алдаа гарлаа: {e.Message}");
         }
     }
+    /// <summary>
+    /// Зургийг боловсруулах үндсэн метод. Оруулсан зургийг TargetSize хэмжээтэй квадрат зураг болгож хадгална.
+    /// </summary>
+    /// <param name="image"> Боловсруулах зургийн объект. </param>
+    /// <param name="outputPath"> Боловсруулсан зургийг хадгалах зам. </param>
+    /// <returns> Үр дүнг илэрхийлэх record. </returns>
     public static ProcessResult ProcessImage(Image image, string outputPath)
     {
         if (image.Width < MinimumSize || image.Height < MinimumSize)
@@ -52,11 +73,20 @@ public class ProfilePictureProcessor
             return ProcessResult.Fail($"Зураг хадгалах үед алдаа гарлаа: {e.Message}");
         }
     }
-
+    /// <summary>
+    /// Боловсруулсан зургийг хадгалах метод. Зургийг PNG форматаар хадгална.
+    /// </summary>
+    /// <param name="bmp"> Хадгалах зургийн объект. </param>
+    /// <param name="outputPath"> Боловсруулсан зургийг хадгалах зам. </param>
     public static void SaveImage(Bitmap bmp, string outputPath)
     {
         bmp.Save(outputPath, ImageFormat.Png);
     }
+    /// <summary>
+    /// Зургийг квадрат хэлбэрт оруулах метод.
+    /// </summary>
+    /// <param name="image"> Хэлбэрийг нь өөрчлөх зургийн объект. </param>
+    /// <returns> Квадрат хэлбэртэй болгосон зургийн объект. </returns>
     public static Bitmap CropToSquare(Image image)
     {
         int size = Math.Min(image.Width, image.Height);
@@ -68,6 +98,13 @@ public class ProfilePictureProcessor
         graphic.DrawImage(image, new Rectangle(0, 0, size, size), new Rectangle(x, y, size, size), GraphicsUnit.Pixel);
         return bmp;
     }
+    /// <summary>
+    /// Зургийг заасан хэмжээтэй болгох метод.
+    /// </summary>
+    /// <param name="image"> Хэмжээг өөрчлөх зургийн объект. </param>
+    /// <param name="width"> Шинэ зургийн урт. </param>
+    /// <param name="height"> Шинэ зургийн өндөр. </param>
+    /// <returns> Хэмжээг нь өөрчилсөн зургийн объект. </returns>
     public static Bitmap Resize(Image image, int width, int height) 
     {
         var bmp = new Bitmap(width, height);
