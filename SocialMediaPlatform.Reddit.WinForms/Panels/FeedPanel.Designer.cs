@@ -42,6 +42,7 @@
             splitContainer.Dock = DockStyle.Fill;
             splitContainer.SplitterDistance = 240;
             splitContainer.SplitterWidth = 1;
+            splitContainer.FixedPanel = FixedPanel.Panel1;
             splitContainer.Name = "splitContainer";
 
             // ─── USER SIDE ─────────────────────────────────────────────

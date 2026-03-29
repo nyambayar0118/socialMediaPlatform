@@ -14,12 +14,38 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
         private readonly MainForm _mainForm;
         private List<TimelinePostDTO> _allPosts = new();
         private List<UserDTO> _allUsers = new();
+        private double _splitRatio = -1;
 
         public FeedPanel(Controller controller, MainForm mainForm)
         {
             _controller = controller;
             _mainForm = mainForm;
             InitializeComponent();
+
+            splitContainer.Panel1MinSize = 180;
+            splitContainer.Panel2MinSize = 400;
+
+            splitContainer.FixedPanel = FixedPanel.None;
+
+            splitContainer.Resize += SplitContainer_Resize;
+        }
+
+
+        private void SplitContainer_Resize(object sender, EventArgs e)
+        {
+            if (splitContainer.Width <= 0) return;
+
+            // Capture ratio on first resize
+            if (_splitRatio < 0)
+                _splitRatio = (double)splitContainer.SplitterDistance / splitContainer.Width;
+
+            int newDistance = (int)(splitContainer.Width * _splitRatio);
+
+            // Clamp to min sizes so it never breaks
+            newDistance = Math.Max(newDistance, splitContainer.Panel1MinSize);
+            newDistance = Math.Min(newDistance, splitContainer.Width - splitContainer.Panel2MinSize);
+
+            splitContainer.SplitterDistance = newDistance;
         }
 
         // ─── REFRESH ──────────────────────────────────────────────────
