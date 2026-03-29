@@ -14,6 +14,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
         private readonly MainForm _mainForm;
         private readonly Session _session;
         private TimelinePostDTO? _currentPost;
+        private double _splitRatio = -1;
 
         public PostPanel(Controller controller, MainForm mainForm)
         {
@@ -21,6 +22,30 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             _mainForm = mainForm;
             _session = Session.GetInstance();
             InitializeComponent();
+
+            splitContainer.Panel1MinSize = 300;
+            splitContainer.Panel2MinSize = 300;
+
+            splitContainer.Resize += SplitContainer_Resize;
+            splitContainer.SplitterMoved += (s, e) =>
+            {
+                if (splitContainer.Width > 0)
+                    _splitRatio = (double)splitContainer.SplitterDistance / splitContainer.Width;
+            };
+        }
+
+        private void SplitContainer_Resize(object sender, EventArgs e)
+        {
+            if (splitContainer.Width <= 0) return;
+
+            if (_splitRatio < 0)
+                _splitRatio = (double)splitContainer.SplitterDistance / splitContainer.Width;
+
+            int newDistance = (int)(splitContainer.Width * _splitRatio);
+            newDistance = Math.Max(newDistance, splitContainer.Panel1MinSize);
+            newDistance = Math.Min(newDistance, splitContainer.Width - splitContainer.Panel2MinSize);
+
+            splitContainer.SplitterDistance = newDistance;
         }
 
         // ─── LOAD ─────────────────────────────────────────────────────

@@ -77,6 +77,7 @@
             splitContainer.SplitterDistance = 520;
             splitContainer.SplitterWidth = 1;
             splitContainer.Name = "splitContainer";
+            splitContainer.FixedPanel = FixedPanel.None;
 
             // ─── POST DETAIL ───────────────────────────────────────────
             postDetailPanel.Dock = DockStyle.Fill;
@@ -99,6 +100,7 @@
             contentArea.Name = "contentArea";
             contentArea.ReadOnly = true;
             contentArea.ScrollBars = RichTextBoxScrollBars.Vertical;
+            contentArea.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             contentArea.Size = new Size(480, 200);
             contentArea.BackColor = SystemColors.Control;
 
@@ -152,9 +154,9 @@
             commentsPanel.AutoScroll = true;
             commentsPanel.FlowDirection = FlowDirection.TopDown;
             commentsPanel.WrapContents = false;
-            commentsPanel.Location = new Point(0, 36);
+            commentsPanel.Dock = DockStyle.Fill;
+            commentsPanel.Padding = new Padding(0, 36, 0, 0);
             commentsPanel.Name = "commentsPanel";
-            commentsPanel.Size = new Size(560, 480);
 
             commentsSidePanel.Controls.Add(commentsHeaderLabel);
             commentsSidePanel.Controls.Add(commentsPanel);
