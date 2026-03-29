@@ -34,8 +34,8 @@ public class ProfilePictureProcessor
             return ProcessResult.Fail($"Зураг хамгийн багадаа {MinimumSize}x{MinimumSize} хэмжээтэй байх ёстой.");
         }
 
-        var croppedImg = CropToSquare(image);
-        var resizedImg = croppedImg.Width > TargetSize ? Resize(croppedImg, TargetSize, TargetSize) : new Bitmap(croppedImg);
+        using var croppedImg = CropToSquare(image);
+        using var resizedImg = croppedImg.Width > TargetSize ? Resize(croppedImg, TargetSize, TargetSize) : new Bitmap(croppedImg);
 
         try
         {
@@ -64,14 +64,14 @@ public class ProfilePictureProcessor
         int y = (image.Height - size) / 2;
 
         var bmp = new Bitmap(size, size);
-        var graphic = Graphics.FromImage(bmp);
+        using var graphic = Graphics.FromImage(bmp);
         graphic.DrawImage(image, new Rectangle(0, 0, size, size), new Rectangle(x, y, size, size), GraphicsUnit.Pixel);
         return bmp;
     }
     public static Bitmap Resize(Image image, int width, int height) 
     {
         var bmp = new Bitmap(width, height);
-        var graphic = Graphics.FromImage(bmp);
+        using var graphic = Graphics.FromImage(bmp);
 
         graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
         graphic.DrawImage(image, 0, 0, width, height);
