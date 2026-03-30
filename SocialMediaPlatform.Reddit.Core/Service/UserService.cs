@@ -67,17 +67,17 @@ namespace SocialMediaPlatform.Reddit.Core.Service
         /// <param name="username">Шинэ хэрэглэгчийн нэр</param>
         /// <param name="email">Шинэ имэйл хаяг</param>
         /// <returns>Засварласан хэрэглэгчийн DTO</returns>
-        public UserDTO EditUser(UserId userId, string username, string email)
+        public UserDTO EditUser(UserId userId, string username, string email, string profilePicturePath)
         {
             var user = _repo.FindById(userId);
             var updated = new NormalUser
             {
                 Id = user.Id,
-                Username = user.Username,
+                Username = username,
                 Email = email,
                 Password = user.Password,
                 CreatedAt = user.CreatedAt,
-                ProfilePicturePath = user.ProfilePicturePath
+                ProfilePicturePath = profilePicturePath
             };
             _repo.Update(updated);
             return new UserDTO(updated.Id, updated.Username, updated.Email, updated.CreatedAt, updated.ProfilePicturePath);

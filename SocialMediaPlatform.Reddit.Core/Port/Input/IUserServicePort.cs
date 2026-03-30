@@ -40,7 +40,7 @@ namespace SocialMediaPlatform.Reddit.Core.Ports.Input
         /// <param name="username">Шинэ хэрэглэгчийн нэр</param>
         /// <param name="email">Шинэ имэйл хаяг</param>
         /// <returns>Засварласан хэрэглэгчийн DTO</returns>
-        UserDTO EditUser(UserId userId, string username, string email);
+        UserDTO EditUser(UserId userId, string username, string email, string profilePicturePath);
 
         /// <summary>Хэрэглэгч устгах</summary>
         /// <param name="userId">Хэрэглэгчийн ID дугаар</param>
