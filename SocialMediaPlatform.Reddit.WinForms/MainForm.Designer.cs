@@ -10,6 +10,7 @@
         private Label usernameLabel;
         private Button editProfileButton;
         private Button logoutButton;
+        private PictureBox toolbarAvatar;
 
         protected override void Dispose(bool disposing)
         {
@@ -38,10 +39,18 @@
             // usernameLabel
             usernameLabel.AutoSize = true;
             usernameLabel.Font = new Font("Segoe UI", 9F);
-            usernameLabel.Location = new Point(870, 12);
+            usernameLabel.Location = new Point(878, 12);
             usernameLabel.Name = "usernameLabel";
             usernameLabel.Text = "";
             usernameLabel.Visible = false;
+
+            // toolbarAvatar
+            toolbarAvatar = new PictureBox();
+            toolbarAvatar.Size = new Size(28, 28);
+            toolbarAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            toolbarAvatar.Location = new Point(844, 7);
+            toolbarAvatar.Visible = false;
+            toolbarPanel.Controls.Add(toolbarAvatar);
 
             // editProfileButton
             editProfileButton.Location = new Point(970, 8);

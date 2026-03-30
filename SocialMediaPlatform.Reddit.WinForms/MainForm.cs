@@ -44,9 +44,27 @@ namespace SocialMediaPlatform.Reddit.WinForms
         public void ShowFeedPanel()
         {
             SetToolbarVisible(true);
-            usernameLabel.Text = _session.GetCurrentUser().Username;
+            var user = _session.GetCurrentUser();
+            usernameLabel.Text = user.Username;
+            RefreshToolbarAvatar();
             _feedPanel.Refresh();
             ShowPanel(_feedPanel);
+        }
+
+        public void RefreshToolbarAvatar()
+        {
+            var user = _session.GetCurrentUser();
+            toolbarAvatar.Image?.Dispose();
+            var avatar = AvatarHelper.Create(user.ProfilePicturePath, user.Username, 28);
+            if (avatar != null)
+            {
+                toolbarAvatar.Image = avatar.Image;
+                toolbarAvatar.Visible = true;
+            }
+            else
+            {
+                toolbarAvatar.Visible = false;
+            }
         }
 
         public void ShowPostPanel(PostId postId)
@@ -68,7 +86,10 @@ namespace SocialMediaPlatform.Reddit.WinForms
             var dialog = new EditUserDialog(_controller);
             dialog.ShowDialog(this);
             if (_session.IsLoggedIn())
+            {
                 usernameLabel.Text = _session.GetCurrentUser().Username;
+                RefreshToolbarAvatar();
+            }
         }
 
         private void logoutButton_Click(object sender, EventArgs e)
@@ -101,6 +122,7 @@ namespace SocialMediaPlatform.Reddit.WinForms
             usernameLabel.Visible = visible;
             editProfileButton.Visible = visible;
             logoutButton.Visible = visible;
+            toolbarAvatar.Visible = visible;
         }
 
         public void ShowError(string message) =>
