@@ -44,5 +44,10 @@ namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
         }
 
         private void closeButton_Click(object sender, EventArgs e) => Close();
+
+        private void avatarLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
