@@ -1,73 +1,80 @@
 ﻿using SocialMediaPlatform.Core.Infrastructure;
 using SocialMediaPlatform.Reddit.Core.Infrastructure;
+using ProfilePictureProcessor;
+using Processor = ProfilePictureProcessor.ProfilePictureProcessor;
 
-namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
+namespace SocialMediaPlatform.Reddit.WinForms.Dialogs;
+
+public partial class EditUserDialog : Form
 {
-    public partial class EditUserDialog : Form
+    private readonly Controller _controller;
+    private readonly Session _session;
+
+    public EditUserDialog(Controller controller)
     {
-        private readonly Controller _controller;
-        private readonly Session _session;
+        _controller = controller;
+        _session = Session.GetInstance();
+        InitializeComponent();
+        LoadCurrentValues();
+    }
 
-        public EditUserDialog(Controller controller)
+    private void LoadCurrentValues()
+    {
+        var user = _session.GetCurrentUser();
+        usernameField.Text = user.Username;
+        emailField.Text = user.Email;
+    }
+
+    // ─── ACTIONS ──────────────────────────────────────────────────
+
+    private void browseButton_Click(object sender, EventArgs e)
+    {
+        using var dialog = new OpenFileDialog();
+        dialog.Filter = "Image files|*.jpg;*.jpeg;*.png;*.bmp";
+        dialog.Title = "Select profile picture";
+
+        if (dialog.ShowDialog() == DialogResult.OK)
+            picturePathField.Text = dialog.FileName;
+    }
+
+    private void saveButton_Click(object sender, EventArgs e)
+    {
+        string username = usernameField.Text.Trim();
+        string email = emailField.Text.Trim();
+
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email))
         {
-            _controller = controller;
-            _session = Session.GetInstance();
-            InitializeComponent();
-            LoadCurrentValues();
+            errorLabel.Text = "Please fill in all fields";
+            return;
         }
 
-        private void LoadCurrentValues()
+        try
         {
-            var user = _session.GetCurrentUser();
-            usernameField.Text = user.Username;
-            emailField.Text = user.Email;
-        }
-
-        // ─── ACTIONS ──────────────────────────────────────────────────
-
-        private void browseButton_Click(object sender, EventArgs e)
-        {
-            using var dialog = new OpenFileDialog();
-            dialog.Filter = "Image files|*.jpg;*.jpeg;*.png;*.bmp";
-            dialog.Title = "Select profile picture";
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-                picturePathField.Text = dialog.FileName;
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            string username = usernameField.Text.Trim();
-            string email = emailField.Text.Trim();
-
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email))
+            // save profile picture file if selected
+            string picturePath = _session.GetCurrentUser().ProfilePicturePath ?? "";
+            if (!string.IsNullOrEmpty(picturePathField.Text) && File.Exists(picturePathField.Text))
             {
-                errorLabel.Text = "Please fill in all fields";
-                return;
-            }
+                string dest = Path.Combine("profilepics", _session.GetCurrentUser().Id.Value + ".png");
+                var result = Processor.Process(picturePathField.Text, dest);
 
-            try
-            {
-                // save profile picture file if selected
-                string picturePath = _session.GetCurrentUser().ProfilePicturePath ?? "";
-                if (!string.IsNullOrEmpty(picturePathField.Text) && File.Exists(picturePathField.Text))
+                if (!result.Success)
                 {
-                    Directory.CreateDirectory("profilepics");
-                    string dest = Path.Combine("profilepics", _session.GetCurrentUser().Id.Value + Path.GetExtension(picturePathField.Text));
-                    File.Copy(picturePathField.Text, dest, overwrite: true);
-                    picturePath = dest;
+                    errorLabel.Text = result.ErrorMessage;
+                    return;
                 }
 
-                var updated = _controller.EditUser(_session.GetCurrentUser().Id, username, email);
-                _session.Login(updated);
-                Close();
+                picturePath = result.OutputPath!;
             }
-            catch (Exception ex)
-            {
-                errorLabel.Text = ex.Message;
-            }
-        }
 
-        private void cancelButton_Click(object sender, EventArgs e) => Close();
+            var updated = _controller.EditUser(_session.GetCurrentUser().Id, username, email, picturePath);
+            _session.Login(updated);
+            Close();
+        }
+        catch (Exception ex)
+        {
+            errorLabel.Text = ex.Message;
+        }
     }
+
+    private void cancelButton_Click(object sender, EventArgs e) => Close();
 }
