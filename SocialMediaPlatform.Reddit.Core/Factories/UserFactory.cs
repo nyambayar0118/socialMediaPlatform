@@ -3,7 +3,7 @@ using SocialMediaPlatform.Core.Domain.IdWrapper;
 using SocialMediaPlatform.Reddit.Core.Domain.Enum;
 using SocialMediaPlatform.Reddit.Core.Domain.Users;
 
-namespace SocialMediaPlatform.Reddit.Infrastructure.Factories
+namespace SocialMediaPlatform.Reddit.Core.Factories
 {
     /// <summary>
     /// Хэрэглэгчийн объект үүсгэх factory класс

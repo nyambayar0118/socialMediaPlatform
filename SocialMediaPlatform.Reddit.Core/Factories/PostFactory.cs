@@ -1,7 +1,7 @@
 ﻿using SocialMediaPlatform.Core.Domain.IdWrapper;
 using SocialMediaPlatform.Reddit.Core.Domain.Posts;
 
-namespace SocialMediaPlatform.Reddit.Infrastructure.Factories
+namespace SocialMediaPlatform.Reddit.Core.Factories
 {
     /// <summary>
     /// Постын объект үүсгэх factory класс
