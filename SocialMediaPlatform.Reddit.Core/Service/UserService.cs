@@ -2,7 +2,7 @@
 using SocialMediaPlatform.Core.Domain.IdWrapper;
 using SocialMediaPlatform.Reddit.Core.Domain.Enum;
 using SocialMediaPlatform.Reddit.Core.Domain.Users;
-using SocialMediaPlatform.Reddit.Core.Factory;
+using SocialMediaPlatform.Reddit.Core.Factories;
 using SocialMediaPlatform.Reddit.Core.Ports.Input;
 using SocialMediaPlatform.Reddit.Core.Ports.Output;
 

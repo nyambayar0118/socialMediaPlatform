@@ -3,7 +3,7 @@ using SocialMediaPlatform.Core.Domain.Entity;
 using SocialMediaPlatform.Core.Domain.IdWrapper;
 using SocialMediaPlatform.Reddit.Core.Domain.Posts;
 using SocialMediaPlatform.Reddit.Core.Domain.DTOs;
-using SocialMediaPlatform.Reddit.Core.Factory;
+using SocialMediaPlatform.Reddit.Core.Factories;
 using SocialMediaPlatform.Reddit.Core.Ports.Input;
 using SocialMediaPlatform.Reddit.Core.Ports.Output;
 
