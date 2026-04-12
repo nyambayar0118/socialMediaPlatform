@@ -1,7 +1,7 @@
 ﻿using SocialMediaPlatform.Core.Infrastructure;
 using SocialMediaPlatform.Reddit.Core.Ports.Output;
 using SocialMediaPlatform.Reddit.Core.Service;
-using SocialMediaPlatform.Reddit.Infrastructure.Factories;
+using SocialMediaPlatform.Reddit.Core.Factories;
 using SocialMediaPlatform.Reddit.Infrastructure.IdGenerator;
 using SocialMediaPlatform.Reddit.Infrastructure.Persistence.File;
 using SocialMediaPlatform.Reddit.Infrastructure.Persistence.Sqlite;
@@ -79,10 +79,10 @@ namespace SocialMediaPlatform.Reddit.Infrastructure
 
             // SQLite repositories
             var userRepo = new UserRepoSqlite(dbConnection.Connection);
-            var postRepo = new PostRepoSqlite(dbContext.Connection);
-            var commentRepo = new CommentRepoSqlite(dbContext.Connection);
-            var reactionRepo = new ReactionRepoSqlite(dbContext.Connection);
-            var idRepo = new SequentialIdRepoSqlite(dbContext.Connection);
+            var postRepo = new PostRepoSqlite(dbConnection.Connection);
+            var commentRepo = new CommentRepoSqlite(dbConnection.Connection);
+            var reactionRepo = new ReactionRepoSqlite(dbConnection.Connection);
+            var idRepo = new SequentialIdRepoSqlite(dbConnection.Connection);
 
             // Id Generator объектыг үүсгэнэ
             var idGenerator = new SequentialIdGenerator(idRepo);
