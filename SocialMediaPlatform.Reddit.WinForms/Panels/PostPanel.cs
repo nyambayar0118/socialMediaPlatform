@@ -104,24 +104,24 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             if (_currentPost == null) return;
 
             var counts = _reactionService.GetReactionCount(_currentPost.Id.Value, ReactionTargetType.Post);
-            uint upvotes = counts.GetValueOrDefault("Upvote", 0u);
-            uint downvotes = counts.GetValueOrDefault("Downvote", 0u);
-            int netVotes = (int)upvotes - (int)downvotes;
+            int upvotes = (int)counts.GetValueOrDefault("Upvote", 0u);
+            int downvotes = (int)counts.GetValueOrDefault("Downvote", 0u);
+            int netVotes = upvotes - downvotes;
 
             if (_voteControl == null)
             {
                 _voteControl = new VoteReactionControl();
-                _voteControl.Location = new Point(10, 60);
+                _voteControl.Location = new Point(10, 270);
                 _voteControl.OnVoteChanged += VoteControl_OnVoteChanged;
-                Controls.Add(_voteControl);
-
-                _voteControl.VoteCount = netVotes;
-
-                int userVote = 0;
-                if (upvotes > 0) userVote = 1;
-                else if (downvotes > 0) userVote = -1;
-                _voteControl.CurrentUserVote = userVote;
+                postDetailPanel.Controls.Add(_voteControl);
             }
+
+            _voteControl.VoteCount = netVotes;
+
+            int userVote = 0;
+            if (upvotes > 0) userVote = 1;
+            else if (downvotes > 0) userVote = -1;
+            _voteControl.CurrentUserVote = userVote;
         }
 
         private void VoteControl_OnVoteChanged(object sender, VoteChangedEventArgs e)
@@ -147,26 +147,6 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             {
                 _mainForm.ShowError(ex.Message);
             }
-        }
-
-        private void upvoteBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _reactionService.React(_currentPost!.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Upvote");
-                RefreshPostReactions();
-            }
-            catch (Exception ex) { _mainForm.ShowError(ex.Message); }
-        }
-
-        private void downvoteBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _reactionService.React(_currentPost!.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Downvote");
-                RefreshPostReactions();
-            }
-            catch (Exception ex) { _mainForm.ShowError(ex.Message); }
         }
 
         private void editPostBtn_Click(object sender, EventArgs e)
@@ -234,7 +214,6 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
                 Margin = new Padding(0, 0, 0, 6)
             };
 
-            // author + date
             var authorLabel = new Label
             {
                 Text = $"u/{author}",
@@ -251,7 +230,6 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
                 Location = new Point(card.Width - 100, 10)
             };
 
-            // content
             var contentLabel = new Label
             {
                 Text = comment.Content,
@@ -260,7 +238,6 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
                 Location = new Point(10, 34)
             };
 
-            // reactions
             var counts = _reactionService.GetReactionCount(comment.Id.Value, ReactionTargetType.Comment);
             int upvotes = (int)counts.GetValueOrDefault("Upvote", 0u);
             int downvotes = (int)counts.GetValueOrDefault("Downvote", 0u);
@@ -289,12 +266,11 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
                 catch (Exception ex) { _mainForm.ShowError(ex.Message); }
             };
 
-            card.Controls.Add(voteControl);
             card.Controls.Add(authorLabel);
             card.Controls.Add(dateLabel);
             card.Controls.Add(contentLabel);
+            card.Controls.Add(voteControl);
 
-            // delete — only for comment author
             bool isAuthor = comment.AuthorId.Value == _session.GetCurrentUser().Id.Value;
             if (isAuthor)
             {
@@ -302,7 +278,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
                 {
                     Text = "Delete",
                     Size = new Size(65, 24),
-                    Location = new Point(card.Width - 80, 76)
+                    Location = new Point(card.Width - 80, 100)
                 };
                 deleteBtn.Click += (s, e) => HandleDeleteComment(comment.Id);
                 card.Controls.Add(deleteBtn);

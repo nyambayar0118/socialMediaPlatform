@@ -13,8 +13,6 @@
         private Label titleLabel;
         private Label metaLabel;
         private RichTextBox contentArea;
-        private Button upvoteBtn;
-        private Button downvoteBtn;
         private Button editPostBtn;
         private Button deletePostBtn;
 
@@ -44,8 +42,6 @@
             titleLabel = new Label();
             metaLabel = new Label();
             contentArea = new RichTextBox();
-            upvoteBtn = new Button();
-            downvoteBtn = new Button();
             editPostBtn = new Button();
             deletePostBtn = new Button();
             commentsSidePanel = new Panel();
@@ -82,6 +78,7 @@
             // ─── POST DETAIL ───────────────────────────────────────────
             postDetailPanel.Dock = DockStyle.Fill;
             postDetailPanel.Name = "postDetailPanel";
+            postDetailPanel.AutoScroll = true;
 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
@@ -100,30 +97,17 @@
             contentArea.Name = "contentArea";
             contentArea.ReadOnly = true;
             contentArea.ScrollBars = RichTextBoxScrollBars.Vertical;
-            contentArea.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            contentArea.Size = new Size(480, 200);
+            contentArea.Size = new Size(480, 180);
             contentArea.BackColor = SystemColors.Control;
 
-            upvoteBtn.Location = new Point(20, 296);
-            upvoteBtn.Name = "upvoteBtn";
-            upvoteBtn.Size = new Size(70, 26);
-            upvoteBtn.Text = "△ 0";
-            upvoteBtn.Click += upvoteBtn_Click;
-
-            downvoteBtn.Location = new Point(96, 296);
-            downvoteBtn.Name = "downvoteBtn";
-            downvoteBtn.Size = new Size(70, 26);
-            downvoteBtn.Text = "▽ 0";
-            downvoteBtn.Click += downvoteBtn_Click;
-
-            editPostBtn.Location = new Point(20, 332);
+            editPostBtn.Location = new Point(20, 320);
             editPostBtn.Name = "editPostBtn";
             editPostBtn.Size = new Size(70, 26);
             editPostBtn.Text = "Edit";
             editPostBtn.Visible = false;
             editPostBtn.Click += editPostBtn_Click;
 
-            deletePostBtn.Location = new Point(96, 332);
+            deletePostBtn.Location = new Point(96, 320);
             deletePostBtn.Name = "deletePostBtn";
             deletePostBtn.Size = new Size(70, 26);
             deletePostBtn.Text = "Delete";
@@ -133,8 +117,6 @@
             postDetailPanel.Controls.Add(titleLabel);
             postDetailPanel.Controls.Add(metaLabel);
             postDetailPanel.Controls.Add(contentArea);
-            postDetailPanel.Controls.Add(upvoteBtn);
-            postDetailPanel.Controls.Add(downvoteBtn);
             postDetailPanel.Controls.Add(editPostBtn);
             postDetailPanel.Controls.Add(deletePostBtn);
 
