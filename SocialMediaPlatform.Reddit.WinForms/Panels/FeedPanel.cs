@@ -5,6 +5,7 @@ using SocialMediaPlatform.Core.Infrastructure;
 using SocialMediaPlatform.Reddit.Core.Domain.DTOs;
 using SocialMediaPlatform.Reddit.Core.Domain.Enum;
 using SocialMediaPlatform.Reddit.Core.Service;
+using SocialMediaPlatform.Reddit.WinForms.CustomControls;
 using SocialMediaPlatform.Reddit.WinForms.Dialogs;
 
 namespace SocialMediaPlatform.Reddit.WinForms.Panels
@@ -143,6 +144,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             var counts = _reactionService.GetReactionCount(post.Id.Value, ReactionTargetType.Post);
             uint upvotes = counts.GetValueOrDefault("Upvote", 0u);
             uint downvotes = counts.GetValueOrDefault("Downvote", 0u);
+            int netVotes = (int)upvotes - (int)downvotes;
 
             // ─── CARD ─────────────────────────────────────────────────
             var card = new Panel
@@ -173,32 +175,20 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
                 Location = new Point(10, 34)
             };
 
-            // upvote button
-            var upvoteBtn = new Button
+            var voteControl = new VoteReactionControl
             {
-                Text = $"△ {upvotes}",
                 Location = new Point(10, 70),
-                Size = new Size(70, 26),
-                Tag = post
+                VoteCount = netVotes,
+                CurrentUserVote = upvotes > 0 ? 1 : -1
             };
 
-            // downvote button
-            var downvoteBtn = new Button
-            {
-                Text = $"▽ {downvotes}",
-                Location = new Point(86, 70),
-                Size = new Size(70, 26),
-                Tag = post
-            };
-
-            upvoteBtn.Click += (s, e) =>
-            {
-                _reactionService.React(post.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Upvote");
-                LoadPosts();
-            };
-            downvoteBtn.Click += (s, e) =>
-            {
-                _reactionService.React(post.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Downvote");
+            voteControl.OnVoteChanged += (s, e) => {
+                if (e.VoteType == 1)
+                    _reactionService.React(post.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Upvote");
+                else if (e.VoteType == -1)
+                    _reactionService.React(post.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Downvote");
+                else if (e.VoteType == 0)
+                    _reactionService.Unreact(post.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id);
                 LoadPosts();
             };
 
@@ -232,8 +222,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
 
             card.Controls.Add(titleLabel);
             card.Controls.Add(metaLabel);
-            card.Controls.Add(upvoteBtn);
-            card.Controls.Add(downvoteBtn);
+            card.Controls.Add(voteControl);
 
             // click card to open post
             card.Click += (s, e) => _mainForm.ShowPostPanel(post.Id);
