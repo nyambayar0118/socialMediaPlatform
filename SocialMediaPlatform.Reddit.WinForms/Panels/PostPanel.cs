@@ -138,7 +138,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
                 }
                 else if (e.VoteType == 0)
                 {
-                    _reactionService.React(_currentPost!.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "None");
+                    _reactionService.Unreact(_currentPost!.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id);
                 }
 
                 RefreshPostReactions();
@@ -282,7 +282,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
                     else if (e.VoteType == -1)
                         _reactionService.React(comment.Id.Value, ReactionTargetType.Comment, _session.GetCurrentUser().Id, "Downvote");
                     else if (e.VoteType == 0)
-                        _reactionService.React(comment.Id.Value, ReactionTargetType.Comment, _session.GetCurrentUser().Id, "None");
+                        _reactionService.Unreact(comment.Id.Value, ReactionTargetType.Comment, _session.GetCurrentUser().Id);
 
                     LoadComments();
                 }
