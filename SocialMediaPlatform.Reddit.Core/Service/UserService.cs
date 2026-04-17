@@ -90,7 +90,9 @@ namespace SocialMediaPlatform.Reddit.Core.Service
             _repo.Delete(userId);
         }
 
-        List<UserDTO> IUserServicePort.GetAllUsers()
+        /// <summary>Бүх хэрэглэгчдийг авах</summary>
+        /// <returns>Хэрэглэгчдийн DTO жагсаалт</returns>
+        public List<UserDTO> GetAllUsers()
         {
             var users = _repo.FindAll();
             return users.Select(u => new UserDTO(u.Id, u.Username, u.Email, u.CreatedAt, u.ProfilePicturePath)).ToList();
