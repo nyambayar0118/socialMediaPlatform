@@ -6,6 +6,7 @@ using SocialMediaPlatform.Core.Infrastructure;
 using SocialMediaPlatform.Reddit.Core.Domain.DTOs;
 using SocialMediaPlatform.Reddit.Core.Service;
 using SocialMediaPlatform.Reddit.WinForms.Dialogs;
+using SocialMediaPlatform.Reddit.WinForms.CustomControls;
 
 namespace SocialMediaPlatform.Reddit.WinForms.Panels
 {
@@ -19,6 +20,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
         private readonly MainForm _mainForm;
         private TimelinePostDTO? _currentPost;
         private double _splitRatio = -1;
+        private VoteReactionControl _voteControl;
 
         public PostPanel(UserService userService, PostService postService, CommentService commentService, ReactionService reactionService, MainForm mainForm)
         {
@@ -104,9 +106,47 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             var counts = _reactionService.GetReactionCount(_currentPost.Id.Value, ReactionTargetType.Post);
             uint upvotes = counts.GetValueOrDefault("Upvote", 0u);
             uint downvotes = counts.GetValueOrDefault("Downvote", 0u);
+            int netVotes = (int)upvotes - (int)downvotes;
 
-            upvoteBtn.Text = $"△ {upvotes}";
-            downvoteBtn.Text = $"▽ {downvotes}";
+            if (_voteControl == null)
+            {
+                _voteControl = new VoteReactionControl();
+                _voteControl.Location = new Point(10, 60);
+                _voteControl.OnVoteChanged += VoteControl_OnVoteChanged;
+                Controls.Add(_voteControl);
+
+                _voteControl.VoteCount = netVotes;
+
+                int userVote = 0;
+                if (upvotes > 0) userVote = 1;
+                else if (downvotes > 0) userVote = -1;
+                _voteControl.CurrentUserVote = userVote;
+            }
+        }
+
+        private void VoteControl_OnVoteChanged(object sender, VoteChangedEventArgs e)
+        {
+            try
+            {
+                if (e.VoteType == 1)
+                {
+                    _reactionService.React(_currentPost!.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Upvote");
+                }
+                else if (e.VoteType == -1)
+                {
+                    _reactionService.React(_currentPost!.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Downvote");
+                }
+                else if (e.VoteType == 0)
+                {
+                    _reactionService.React(_currentPost!.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "None");
+                }
+
+                RefreshPostReactions();
+            }
+            catch (Exception ex)
+            {
+                _mainForm.ShowError(ex.Message);
+            }
         }
 
         private void upvoteBtn_Click(object sender, EventArgs e)
@@ -190,7 +230,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             {
                 BorderStyle = BorderStyle.FixedSingle,
                 Width = commentsPanel.ClientSize.Width - 20,
-                Height = 110,
+                Height = 140,
                 Margin = new Padding(0, 0, 0, 6)
             };
 
@@ -222,30 +262,37 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
 
             // reactions
             var counts = _reactionService.GetReactionCount(comment.Id.Value, ReactionTargetType.Comment);
-            uint upvotes = counts.GetValueOrDefault("Upvote", 0u);
-            uint downvotes = counts.GetValueOrDefault("Downvote", 0u);
+            int upvotes = (int)counts.GetValueOrDefault("Upvote", 0u);
+            int downvotes = (int)counts.GetValueOrDefault("Downvote", 0u);
+            int netVotes = upvotes - downvotes;
 
-            var upBtn = new Button
+            var voteControl = new VoteReactionControl
             {
-                Text = $"△ {upvotes}",
-                Size = new Size(65, 24),
-                Location = new Point(10, 76)
-            };
-            var downBtn = new Button
-            {
-                Text = $"▽ {downvotes}",
-                Size = new Size(65, 24),
-                Location = new Point(80, 76)
+                Location = new Point(10, 100),
+                VoteCount = netVotes,
+                CurrentUserVote = upvotes > 0 ? 1 : (downvotes > 0 ? -1 : 0)
             };
 
-            upBtn.Click += (s, e) => { _reactionService.React(comment.Id.Value, ReactionTargetType.Comment, _session.GetCurrentUser().Id, "Upvote"); LoadComments(); };
-            downBtn.Click += (s, e) => { _reactionService.React(comment.Id.Value, ReactionTargetType.Comment, _session.GetCurrentUser().Id, "Downvote"); LoadComments(); };
+            voteControl.OnVoteChanged += (s, e) =>
+            {
+                try
+                {
+                    if (e.VoteType == 1)
+                        _reactionService.React(comment.Id.Value, ReactionTargetType.Comment, _session.GetCurrentUser().Id, "Upvote");
+                    else if (e.VoteType == -1)
+                        _reactionService.React(comment.Id.Value, ReactionTargetType.Comment, _session.GetCurrentUser().Id, "Downvote");
+                    else if (e.VoteType == 0)
+                        _reactionService.React(comment.Id.Value, ReactionTargetType.Comment, _session.GetCurrentUser().Id, "None");
 
+                    LoadComments();
+                }
+                catch (Exception ex) { _mainForm.ShowError(ex.Message); }
+            };
+
+            card.Controls.Add(voteControl);
             card.Controls.Add(authorLabel);
             card.Controls.Add(dateLabel);
             card.Controls.Add(contentLabel);
-            card.Controls.Add(upBtn);
-            card.Controls.Add(downBtn);
 
             // delete — only for comment author
             bool isAuthor = comment.AuthorId.Value == _session.GetCurrentUser().Id.Value;
