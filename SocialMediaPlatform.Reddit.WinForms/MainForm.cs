@@ -1,6 +1,7 @@
+// SocialMediaPlatform.Reddit.WinForms/MainForm.cs
 using SocialMediaPlatform.Core.Domain.IdWrapper;
 using SocialMediaPlatform.Core.Infrastructure;
-using SocialMediaPlatform.Reddit.Core.Infrastructure;
+using SocialMediaPlatform.Reddit.Infrastructure;
 using SocialMediaPlatform.Reddit.WinForms.Dialogs;
 using SocialMediaPlatform.Reddit.WinForms.Panels;
 
@@ -8,22 +9,38 @@ namespace SocialMediaPlatform.Reddit.WinForms
 {
     public partial class MainForm : Form
     {
-        private readonly Controller _controller;
+        private readonly AppConfig _appConfig;
         private readonly Session _session;
 
         private LoginPanel _loginPanel;
         private FeedPanel _feedPanel;
         private PostPanel _postPanel;
 
-        public MainForm(Controller controller)
+        public MainForm(AppConfig appConfig)
         {
-            _controller = controller;
+            _appConfig = appConfig;
             _session = Session.GetInstance();
             InitializeComponent();
-            _loginPanel = new LoginPanel(_controller, this);
-            _feedPanel = new FeedPanel(_controller, this);
-            _postPanel = new PostPanel(_controller, this);
+            InitializePanels();
             ShowLoginPanel();
+        }
+
+        private void InitializePanels()
+        {
+            _loginPanel = new LoginPanel(_appConfig.UserService, this);
+            _feedPanel = new FeedPanel(
+                _appConfig.UserService,
+                _appConfig.PostService,
+                _appConfig.ReactionService,
+                this
+            );
+            _postPanel = new PostPanel(
+                _appConfig.UserService,
+                _appConfig.PostService,
+                _appConfig.CommentService,
+                _appConfig.ReactionService,
+                this
+            );
         }
 
         // ─── NAVIGATION ───────────────────────────────────────────────
@@ -83,7 +100,7 @@ namespace SocialMediaPlatform.Reddit.WinForms
 
         private void editProfileButton_Click(object sender, EventArgs e)
         {
-            var dialog = new EditUserDialog(_controller);
+            var dialog = new EditUserDialog(_appConfig.UserService);
             dialog.ShowDialog(this);
             if (_session.IsLoggedIn())
             {
@@ -101,7 +118,7 @@ namespace SocialMediaPlatform.Reddit.WinForms
             );
             if (result == DialogResult.Yes)
             {
-                _controller.Logout();
+                _session.Logout();
                 ShowLoginPanel();
             }
         }

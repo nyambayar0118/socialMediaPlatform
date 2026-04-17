@@ -1,18 +1,21 @@
-﻿using SocialMediaPlatform.Core.Domain.DTO;
+﻿// SocialMediaPlatform.Reddit.WinForms/Dialogs/CreateEditPostDialog.cs
 using SocialMediaPlatform.Core.Domain.IdWrapper;
+using SocialMediaPlatform.Core.Infrastructure;
 using SocialMediaPlatform.Reddit.Core.Domain.DTOs;
-using SocialMediaPlatform.Reddit.Core.Infrastructure;
+using SocialMediaPlatform.Reddit.Core.Service;
 
 namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
 {
     public partial class CreateEditPostDialog : Form
     {
-        private readonly Controller _controller;
+        private readonly PostService _postService;
+        private readonly Session _session;
         private readonly TimelinePostDTO? _existingPost;
 
-        public CreateEditPostDialog(Controller controller, TimelinePostDTO? existingPost = null)
+        public CreateEditPostDialog(PostService postService, Session session, TimelinePostDTO? existingPost = null)
         {
-            _controller = controller;
+            _postService = postService;
+            _session = session;
             _existingPost = existingPost;
             InitializeComponent();
             SetupForm();
@@ -52,9 +55,9 @@ namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
             try
             {
                 if (_existingPost == null)
-                    _controller.CreatePost(title, content);
+                    _postService.CreatePost(_session.GetCurrentUser().Id, title, content);
                 else
-                    _controller.EditPost(_existingPost.Id, title, content);
+                    _postService.EditPost(_existingPost.Id, title, content);
 
                 Close();
             }
@@ -65,6 +68,5 @@ namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
         }
 
         private void cancelButton_Click(object sender, EventArgs e) => Close();
-
     }
 }

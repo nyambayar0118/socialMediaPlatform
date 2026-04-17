@@ -1,16 +1,20 @@
-﻿using SocialMediaPlatform.Reddit.Core.Infrastructure;
+﻿// SocialMediaPlatform.Reddit.WinForms/Panels/LoginPanel.cs
+using SocialMediaPlatform.Core.Infrastructure;
+using SocialMediaPlatform.Reddit.Core.Service;
 using SocialMediaPlatform.Reddit.WinForms.Dialogs;
 
 namespace SocialMediaPlatform.Reddit.WinForms.Panels
 {
     public partial class LoginPanel : UserControl
     {
-        private readonly Controller _controller;
+        private readonly UserService _userService;
+        private readonly Session _session;
         private readonly MainForm _mainForm;
 
-        public LoginPanel(Controller controller, MainForm mainForm)
+        public LoginPanel(UserService userService, MainForm mainForm)
         {
-            _controller = controller;
+            _userService = userService;
+            _session = Session.GetInstance();
             _mainForm = mainForm;
             InitializeComponent();
         }
@@ -30,7 +34,8 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
 
             try
             {
-                _controller.Login(username, password);
+                var userDto = _userService.Login(username, password);
+                _session.Login(userDto);
                 ClearFields();
                 _mainForm.ShowFeedPanel();
             }
@@ -43,7 +48,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
 
         private void registerLink_Click(object sender, EventArgs e)
         {
-            var dialog = new RegisterDialog(_controller);
+            var dialog = new RegisterDialog(_userService);
             dialog.ShowDialog(_mainForm);
         }
 

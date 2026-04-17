@@ -1,4 +1,5 @@
-﻿using SocialMediaPlatform.Core.Domain.DTO;
+﻿// SocialMediaPlatform.Reddit.WinForms/Dialogs/UserProfileDialog.cs
+using SocialMediaPlatform.Core.Domain.DTO;
 
 namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
 {
@@ -21,7 +22,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
 
             if (string.IsNullOrEmpty(_user.ProfilePicturePath) || !File.Exists(_user.ProfilePicturePath))
             {
-                // show initials circle
+                // Show initials circle
                 string initials = _user.Username.Length >= 2
                     ? _user.Username.Substring(0, 2).ToUpper()
                     : _user.Username.ToUpper();
@@ -36,10 +37,22 @@ namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
             }
             else
             {
-                // show actual profile picture
+                // Show actual profile picture
                 avatarLabel.Visible = false;
-                avatarPanel.BackgroundImage = Image.FromFile(_user.ProfilePicturePath);
-                avatarPanel.BackgroundImageLayout = ImageLayout.Zoom;
+                try
+                {
+                    avatarPanel.BackgroundImage = Image.FromFile(_user.ProfilePicturePath);
+                    avatarPanel.BackgroundImageLayout = ImageLayout.Zoom;
+                }
+                catch (Exception ex)
+                {
+                    // If image fails to load, show initials instead
+                    string initials = _user.Username.Length >= 2
+                        ? _user.Username.Substring(0, 2).ToUpper()
+                        : _user.Username.ToUpper();
+                    avatarLabel.Text = initials;
+                    avatarLabel.Visible = true;
+                }
             }
         }
 
@@ -47,7 +60,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
 
         private void avatarLabel_Click(object sender, EventArgs e)
         {
-
+            // Currently no action
         }
     }
 }

@@ -1,18 +1,22 @@
-﻿using SocialMediaPlatform.Reddit.Core.Infrastructure;
+﻿// SocialMediaPlatform.Reddit.WinForms/Dialogs/RegisterDialog.cs
+using SocialMediaPlatform.Core.Infrastructure;
+using SocialMediaPlatform.Reddit.Core.Service;
 
 namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
 {
     public partial class RegisterDialog : Form
     {
-        private readonly Controller _controller;
+        private readonly UserService _userService;
+        private readonly Session _session;
 
-        public RegisterDialog(Controller controller)
+        public RegisterDialog(UserService userService)
         {
-            _controller = controller;
+            _userService = userService;
+            _session = Session.GetInstance();
             InitializeComponent();
         }
 
-        // LISTENERS
+        // ─── ACTIONS ──────────────────────────────────────────────────
 
         private void registerButton_Click(object sender, EventArgs e)
         {
@@ -43,7 +47,9 @@ namespace SocialMediaPlatform.Reddit.WinForms.Dialogs
 
             try
             {
-                _controller.Register(username, email, password);
+                var user = _userService.Register(username, email, password);
+                _session.Login(user);
+
                 MessageBox.Show(
                     "Account created! You can now sign in.",
                     "Success",

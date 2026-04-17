@@ -1,26 +1,33 @@
-﻿using SocialMediaPlatform.Core.Domain.DTO;
+﻿// SocialMediaPlatform.Reddit.WinForms/Panels/PostPanel.cs
+using SocialMediaPlatform.Core.Domain.DTO;
 using SocialMediaPlatform.Core.Domain.Enum;
 using SocialMediaPlatform.Core.Domain.IdWrapper;
 using SocialMediaPlatform.Core.Infrastructure;
 using SocialMediaPlatform.Reddit.Core.Domain.DTOs;
-using SocialMediaPlatform.Reddit.Core.Infrastructure;
+using SocialMediaPlatform.Reddit.Core.Service;
 using SocialMediaPlatform.Reddit.WinForms.Dialogs;
 
 namespace SocialMediaPlatform.Reddit.WinForms.Panels
 {
     public partial class PostPanel : UserControl
     {
-        private readonly Controller _controller;
-        private readonly MainForm _mainForm;
+        private readonly UserService _userService;
+        private readonly PostService _postService;
+        private readonly CommentService _commentService;
+        private readonly ReactionService _reactionService;
         private readonly Session _session;
+        private readonly MainForm _mainForm;
         private TimelinePostDTO? _currentPost;
         private double _splitRatio = -1;
 
-        public PostPanel(Controller controller, MainForm mainForm)
+        public PostPanel(UserService userService, PostService postService, CommentService commentService, ReactionService reactionService, MainForm mainForm)
         {
-            _controller = controller;
-            _mainForm = mainForm;
+            _userService = userService;
+            _postService = postService;
+            _commentService = commentService;
+            _reactionService = reactionService;
             _session = Session.GetInstance();
+            _mainForm = mainForm;
             InitializeComponent();
 
             splitContainer.Panel1MinSize = 300;
@@ -54,7 +61,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
         {
             try
             {
-                var posts = _controller.GetFeed();
+                var posts = _postService.GetFeed();
                 _currentPost = posts.FirstOrDefault(p => p.Id.Value == postId.Value);
                 if (_currentPost == null)
                 {
@@ -94,7 +101,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
         {
             if (_currentPost == null) return;
 
-            var counts = _controller.GetReactionCount(_currentPost.Id.Value, ReactionTargetType.Post);
+            var counts = _reactionService.GetReactionCount(_currentPost.Id.Value, ReactionTargetType.Post);
             uint upvotes = counts.GetValueOrDefault("Upvote", 0u);
             uint downvotes = counts.GetValueOrDefault("Downvote", 0u);
 
@@ -106,7 +113,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
         {
             try
             {
-                _controller.React(_currentPost!.Id.Value, ReactionTargetType.Post, "Upvote");
+                _reactionService.React(_currentPost!.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Upvote");
                 RefreshPostReactions();
             }
             catch (Exception ex) { _mainForm.ShowError(ex.Message); }
@@ -116,7 +123,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
         {
             try
             {
-                _controller.React(_currentPost!.Id.Value, ReactionTargetType.Post, "Downvote");
+                _reactionService.React(_currentPost!.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Downvote");
                 RefreshPostReactions();
             }
             catch (Exception ex) { _mainForm.ShowError(ex.Message); }
@@ -124,7 +131,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
 
         private void editPostBtn_Click(object sender, EventArgs e)
         {
-            var dialog = new CreateEditPostDialog(_controller, _currentPost);
+            var dialog = new CreateEditPostDialog(_postService, _session, _currentPost);
             dialog.ShowDialog(_mainForm);
             Load(_currentPost!.Id);
         }
@@ -141,7 +148,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             {
                 try
                 {
-                    _controller.DeletePost(_currentPost.Id);
+                    _postService.DeletePost(_currentPost.Id);
                     _mainForm.NavigateBackToFeed();
                 }
                 catch (Exception ex) { _mainForm.ShowError(ex.Message); }
@@ -157,7 +164,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             commentsPanel.Controls.Clear();
             try
             {
-                var comments = _controller.GetComments(_currentPost!.Id);
+                var comments = _commentService.GetComments(_currentPost!.Id);
                 if (comments.Count == 0)
                 {
                     commentsPanel.Controls.Add(new Label
@@ -214,7 +221,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             };
 
             // reactions
-            var counts = _controller.GetReactionCount(comment.Id.Value, ReactionTargetType.Comment);
+            var counts = _reactionService.GetReactionCount(comment.Id.Value, ReactionTargetType.Comment);
             uint upvotes = counts.GetValueOrDefault("Upvote", 0u);
             uint downvotes = counts.GetValueOrDefault("Downvote", 0u);
 
@@ -231,8 +238,8 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
                 Location = new Point(80, 76)
             };
 
-            upBtn.Click += (s, e) => { _controller.React(comment.Id.Value, ReactionTargetType.Comment, "Upvote"); LoadComments(); };
-            downBtn.Click += (s, e) => { _controller.React(comment.Id.Value, ReactionTargetType.Comment, "Downvote"); LoadComments(); };
+            upBtn.Click += (s, e) => { _reactionService.React(comment.Id.Value, ReactionTargetType.Comment, _session.GetCurrentUser().Id, "Upvote"); LoadComments(); };
+            downBtn.Click += (s, e) => { _reactionService.React(comment.Id.Value, ReactionTargetType.Comment, _session.GetCurrentUser().Id, "Downvote"); LoadComments(); };
 
             card.Controls.Add(authorLabel);
             card.Controls.Add(dateLabel);
@@ -267,7 +274,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             }
             try
             {
-                _controller.AddComment(_currentPost!.Id, content);
+                _commentService.AddComment(_currentPost!.Id, _session.GetCurrentUser().Id, content);
                 commentInputArea.Clear();
                 LoadComments();
             }
@@ -286,7 +293,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             {
                 try
                 {
-                    _controller.DeleteComment(commentId);
+                    _commentService.DeleteComment(commentId);
                     LoadComments();
                 }
                 catch (Exception ex) { _mainForm.ShowError(ex.Message); }
@@ -297,7 +304,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
 
         private string ResolveUsername(UserId userId)
         {
-            try { return _controller.GetUser(userId).Username; }
+            try { return _userService.GetUser(userId).Username; }
             catch { return "u/" + userId.Value; }
         }
     }

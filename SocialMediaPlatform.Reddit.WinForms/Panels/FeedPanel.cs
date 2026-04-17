@@ -1,35 +1,39 @@
-﻿using SocialMediaPlatform.Core.Domain.DTO;
+﻿// SocialMediaPlatform.Reddit.WinForms/Panels/FeedPanel.cs
+using SocialMediaPlatform.Core.Domain.DTO;
 using SocialMediaPlatform.Core.Domain.Enum;
-using SocialMediaPlatform.Core.Domain.IdWrapper;
+using SocialMediaPlatform.Core.Infrastructure;
 using SocialMediaPlatform.Reddit.Core.Domain.DTOs;
 using SocialMediaPlatform.Reddit.Core.Domain.Enum;
-using SocialMediaPlatform.Reddit.Core.Infrastructure;
+using SocialMediaPlatform.Reddit.Core.Service;
 using SocialMediaPlatform.Reddit.WinForms.Dialogs;
 
 namespace SocialMediaPlatform.Reddit.WinForms.Panels
 {
     public partial class FeedPanel : UserControl
     {
-        private readonly Controller _controller;
+        private readonly UserService _userService;
+        private readonly PostService _postService;
+        private readonly ReactionService _reactionService;
+        private readonly Session _session;
         private readonly MainForm _mainForm;
         private List<TimelinePostDTO> _allPosts = new();
         private List<UserDTO> _allUsers = new();
         private double _splitRatio = -1;
 
-        public FeedPanel(Controller controller, MainForm mainForm)
+        public FeedPanel(UserService userService, PostService postService, ReactionService reactionService, MainForm mainForm)
         {
-            _controller = controller;
+            _userService = userService;
+            _postService = postService;
+            _reactionService = reactionService;
+            _session = Session.GetInstance();
             _mainForm = mainForm;
             InitializeComponent();
 
             splitContainer.Panel1MinSize = 180;
             splitContainer.Panel2MinSize = 400;
-
             splitContainer.FixedPanel = FixedPanel.None;
-
             splitContainer.Resize += SplitContainer_Resize;
         }
-
 
         private void SplitContainer_Resize(object sender, EventArgs e)
         {
@@ -62,7 +66,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
         {
             try
             {
-                _allUsers = _controller.GetAllUsers();
+                _allUsers = _userService.GetAllUsers();
                 RenderUsers(_allUsers);
             }
             catch (Exception ex)
@@ -100,7 +104,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
         {
             try
             {
-                _allPosts = _controller.GetFeed();
+                _allPosts = _postService.GetFeed();
                 RenderPosts(_allPosts);
             }
             catch (Exception ex)
@@ -132,17 +136,13 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
 
         private Panel BuildPostCard(TimelinePostDTO post)
         {
-            var currentUser = _controller.GetAllUsers()
+            var currentUser = _userService.GetAllUsers()
                 .FirstOrDefault(u => u.Id.Value == post.AuthorId.Value);
             string authorName = currentUser?.Username ?? "u/" + post.AuthorId.Value;
 
-            var counts = _controller.GetReactionCount(post.Id.Value, ReactionTargetType.Post);
+            var counts = _reactionService.GetReactionCount(post.Id.Value, ReactionTargetType.Post);
             uint upvotes = counts.GetValueOrDefault("Upvote", 0u);
             uint downvotes = counts.GetValueOrDefault("Downvote", 0u);
-
-            var session = SocialMediaPlatform.Core.Infrastructure.Session.GetInstance();
-            bool hasUpvoted = false;
-            bool hasDownvoted = false;
 
             // ─── CARD ─────────────────────────────────────────────────
             var card = new Panel
@@ -191,11 +191,19 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
                 Tag = post
             };
 
-            upvoteBtn.Click += (s, e) => { _controller.React(post.Id.Value, ReactionTargetType.Post, "Upvote"); LoadPosts(); };
-            downvoteBtn.Click += (s, e) => { _controller.React(post.Id.Value, ReactionTargetType.Post, "Downvote"); LoadPosts(); };
+            upvoteBtn.Click += (s, e) =>
+            {
+                _reactionService.React(post.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Upvote");
+                LoadPosts();
+            };
+            downvoteBtn.Click += (s, e) =>
+            {
+                _reactionService.React(post.Id.Value, ReactionTargetType.Post, _session.GetCurrentUser().Id, "Downvote");
+                LoadPosts();
+            };
 
             // owner actions
-            if (session.IsLoggedIn() && post.AuthorId.Value == session.GetCurrentUser().Id.Value)
+            if (_session.IsLoggedIn() && post.AuthorId.Value == _session.GetCurrentUser().Id.Value)
             {
                 var editBtn = new Button
                 {
@@ -212,7 +220,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
 
                 editBtn.Click += (s, e) =>
                 {
-                    var dialog = new CreateEditPostDialog(_controller, post);
+                    var dialog = new CreateEditPostDialog(_postService, _session, post);
                     dialog.ShowDialog(_mainForm);
                     LoadPosts();
                 };
@@ -246,7 +254,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
 
         private void newPostButton_Click(object sender, EventArgs e)
         {
-            var dialog = new CreateEditPostDialog(_controller);
+            var dialog = new CreateEditPostDialog(_postService, _session);
             dialog.ShowDialog(_mainForm);
             LoadPosts();
         }
@@ -265,7 +273,7 @@ namespace SocialMediaPlatform.Reddit.WinForms.Panels
             {
                 try
                 {
-                    _controller.DeletePost(post.Id);
+                    _postService.DeletePost(post.Id);
                     LoadPosts();
                 }
                 catch (Exception ex)
