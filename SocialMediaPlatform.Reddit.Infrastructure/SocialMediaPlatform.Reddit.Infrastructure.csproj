@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SocialMediaPlatform.Core">
+      <HintPath>..\SocialMediaPlatform.Core\bin\Debug\net10.0\SocialMediaPlatform.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SocialMediaPlatform.Reddit.Core">
+      <HintPath>..\SocialMediaPlatform.Reddit.Core\bin\Debug\net10.0\SocialMediaPlatform.Reddit.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
