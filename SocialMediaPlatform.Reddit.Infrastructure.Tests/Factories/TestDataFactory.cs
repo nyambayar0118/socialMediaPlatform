@@ -1,5 +1,4 @@
-﻿using Microsoft.ApplicationInsights.Extensibility.Implementation;
-using SocialMediaPlatform.Core.Domain.Entity;
+﻿using SocialMediaPlatform.Core.Domain.Entity;
 using SocialMediaPlatform.Core.Domain.Enum;
 using SocialMediaPlatform.Core.Domain.IdWrapper;
 using SocialMediaPlatform.Reddit.Core.Domain.Comments;
