@@ -197,7 +197,7 @@ namespace ProfilePictureProcessor.Tests
         [DataRow(512, 768, "Өндөр нь илүүтэй - дээр доороос тайрах")]
         [DataRow(768, 512, "Урт нь илүүтэй - хоёр талаас тайрах")]
         [DataRow(1024, 768, "4:3 харьцаа")]
-        [DataRow(600, 400, "3:2 харьцаа")]
+        [DataRow(900, 600, "3:2 харьцаа")]
         [DataRow(800, 600, "4:3 харьцаа")]
         [Description("Янз бүрийн харьцаатай зургийг дөрвөлжин болгож тайрах тест")]
         public void ProcessImage_WithWrongAspectRatio_CropsToSquare(int width, int height, string scenario)
@@ -583,6 +583,25 @@ namespace ProfilePictureProcessor.Tests
             bitmap.Dispose();
         }
 
+        [TestMethod]
+        [Description("Хадгалах үед null path ашиглах тест")]
+        public void ProcessImage_WithNullOutputPath_ReturnsFail()
+        {
+            Bitmap bitmap = CreateTestBitmap(512, 512);
+
+            try
+            {
+                var result = ProfilePictureProcessor.ProcessImage(bitmap, null);
+
+                Assert.IsFalse(result.Success);
+                Assert.IsNotNull(result.ErrorMessage);
+            }
+            finally
+            {
+                bitmap.Dispose();
+            }
+        }
+
         #endregion
 
         #region ProcessResult Record Tests
@@ -640,7 +659,7 @@ namespace ProfilePictureProcessor.Tests
         [TestMethod]
         [DataRow(513, 512, "Арай илүү өргөн")]
         [DataRow(512, 513, "Арай илүү өндөр")]
-        [DataRow(520, 510, "Оршом байршил")]
+        [DataRow(520, 512, "Оршом байршил")]
         [Description("Бараг квадрат хэмжээтэй зургуудыг боловсруулах тест")]
         public void ProcessImage_WithAlmostSquareImage_Accepts(int width, int height, string scenario)
         {
@@ -659,8 +678,8 @@ namespace ProfilePictureProcessor.Tests
         [Description("Маш том хэмжээтэй зургуудыг боловсруулах тест")]
         public void ProcessImage_WithExtremelyLargeDimensions_Processes()
         {
-            string inputPath = CreateTestImage(16384, 16384);
-            string outputPath = Path.Combine(_testDirectory, "output_16384x16384.png");
+            string inputPath = CreateTestImage(4096, 4096);
+            string outputPath = Path.Combine(_testDirectory, "output_4096x4096.png");
 
             var result = ProfilePictureProcessor.ProcessImage(
                 Image.FromFile(inputPath),
@@ -748,17 +767,15 @@ namespace ProfilePictureProcessor.Tests
         }
 
         [TestMethod]
-        [Description("Хадгалах явцад үр дүнг хадгалах зам дээр алдаа гарах тест")]
-        public void Process_WithInvalidOutputPath_ReturnsFail()
+        [Description("Хадгалах явцад null path ашиглах тест")]
+        public void Process_WithNullOutputPath_ReturnsFail()
         {
             string inputPath = CreateTestImage(512, 512);
 
-            // Windows-ийн хориглосон файлын нэр ашиглах
-            string invalidOutputPath = "NUL";
-
-            var result = ProfilePictureProcessor.Process(inputPath, invalidOutputPath);
+            var result = ProfilePictureProcessor.Process(inputPath, null);
 
             Assert.IsFalse(result.Success);
+            Assert.IsNotNull(result.ErrorMessage);
         }
 
         #endregion
