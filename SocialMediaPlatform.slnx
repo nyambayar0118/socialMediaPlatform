@@ -1,6 +1,10 @@
 <Solution>
+  <Project Path="ProfilePictureProcessor.Tests/ProfilePictureProcessor.Tests.csproj" Id="fbdf7706-269b-4279-bde5-cfb943caf409" />
+  <Project Path="ProfilePictureProcessor/ProfilePictureProcessor.csproj" Id="9e22558b-6289-4f8d-a964-a47fcbe24345" />
   <Project Path="SocialMediaPlatform.Core/SocialMediaPlatform.Core.csproj" />
   <Project Path="SocialMediaPlatform.Reddit.ConsoleApp/SocialMediaPlatform.Reddit.ConsoleApp.csproj" Id="5f898828-ec51-49ee-98f4-9b2afd6e9f4c" />
   <Project Path="SocialMediaPlatform.Reddit.Core/SocialMediaPlatform.Reddit.Core.csproj" />
+  <Project Path="SocialMediaPlatform.Reddit.Infrastructure.Tests/SocialMediaPlatform.Reddit.Infrastructure.Tests.csproj" Id="f04b6207-b016-483f-8b2a-d41655d1396b" />
+  <Project Path="SocialMediaPlatform.Reddit.Infrastructure/SocialMediaPlatform.Reddit.Infrastructure.csproj" Id="e0cdbb25-51ae-44c4-ab9a-f75eee43d8e6" />
   <Project Path="SocialMediaPlatform.Reddit.WinForms/SocialMediaPlatform.Reddit.WinForms.csproj" Id="dd60eb6e-2dae-4b27-a734-83a0eb950cf8" />
 </Solution>
