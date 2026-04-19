@@ -49,7 +49,7 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Persistence.Sqlite.Repositor
             const string query = @"
                 SELECT Id, PostId, AuthorId, Content, CreatedAt
                 FROM Comments
-                WHERE CommentId = @CommentId";
+                WHERE Id = @CommentId";
 
             using var command = _connection.CreateCommand();
             command.CommandText = query;
