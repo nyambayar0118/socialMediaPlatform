@@ -108,7 +108,8 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
             _reactionRepo.Delete(1, new UserId { Value = 1 });
 
             var counts = _reactionRepo.CountByTarget(1, ReactionTargetType.Post);
-            Assert.IsFalse(counts.ContainsKey("Upvote") || counts["Upvote"] == 0);
+
+            Assert.IsTrue(!counts.ContainsKey("Upvote") || counts["Upvote"] == 0);
         }
 
         [TestMethod]
@@ -254,6 +255,12 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
         [TestMethod]
         public void CountByTarget_LargeNumberOfReactions_ShouldHandleSuccessfully()
         {
+            for (int i = 6; i <= 50; i++)
+            {
+                var user = TestDataFactory.CreateTestUser(id: (uint)i, username: $"user{i}");
+                _userRepo.Save(user);
+            }
+
             for (int i = 1; i <= 50; i++)
             {
                 if (i % 2 == 0)
