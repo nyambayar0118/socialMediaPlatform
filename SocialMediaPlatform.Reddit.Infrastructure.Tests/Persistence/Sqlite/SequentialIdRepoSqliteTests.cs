@@ -24,6 +24,13 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
             _dbSetup?.Dispose();
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Constructor_NullConnection_ShouldThrowArgumentNullException()
+        {
+            var repo = new SequentialIdRepoSqlite(null);
+        }
+
         #region GetLastId Tests
 
         [TestMethod]

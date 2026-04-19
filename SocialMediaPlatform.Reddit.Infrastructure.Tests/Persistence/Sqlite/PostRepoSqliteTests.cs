@@ -1,8 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SocialMediaPlatform.Core.Domain.IdWrapper;
+using SocialMediaPlatform.Reddit.Core.Domain.Posts;
 using SocialMediaPlatform.Reddit.Infrastructure.Persistence.Sqlite.Repositories;
-using SocialMediaPlatform.Reddit.Infrastructure.Tests.Factories;
 using SocialMediaPlatform.Reddit.Infrastructure.Tests.Connections;
+using SocialMediaPlatform.Reddit.Infrastructure.Tests.Factories;
 
 namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
 {
@@ -28,6 +29,13 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
         public void Cleanup()
         {
             _dbSetup?.Dispose();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Constructor_NullConnection_ShouldThrowArgumentNullException()
+        {
+            var repo = new PostRepoSqlite(null);
         }
 
         #region Save Tests
@@ -70,6 +78,43 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
 
             var retrieved = _postRepo.FindById(new PostId { Value = 1 });
             Assert.AreEqual(10000, (retrieved as SocialMediaPlatform.Reddit.Core.Domain.Posts.TimelinePost)?.Content.Length);
+        }
+
+        [TestMethod]
+        public void Save_PostWithEmptyTitle_ShouldSaveSuccessfully()
+        {
+            var post = TestDataFactory.CreateTestPost(id: 1, authorId: 1, title: "", content: "Content");
+
+            _postRepo.Save(post);
+
+            var retrieved = _postRepo.FindById(new PostId { Value = 1 });
+            Assert.IsNotNull(retrieved);
+            Assert.AreEqual("", (retrieved as TimelinePost)?.Title);
+        }
+
+        [TestMethod]
+        public void Save_PostWithEmptyContent_ShouldSaveSuccessfully()
+        {
+            var post = TestDataFactory.CreateTestPost(id: 1, authorId: 1, title: "Title", content: "");
+
+            _postRepo.Save(post);
+
+            var retrieved = _postRepo.FindById(new PostId { Value = 1 });
+            Assert.IsNotNull(retrieved);
+            Assert.AreEqual("", (retrieved as TimelinePost)?.Content);
+        }
+
+        [TestMethod]
+        public void Save_PostWithBothEmptyTitleAndContent_ShouldSaveSuccessfully()
+        {
+            var post = TestDataFactory.CreateTestPost(id: 1, authorId: 1, title: "", content: "");
+
+            _postRepo.Save(post);
+
+            var retrieved = _postRepo.FindById(new PostId { Value = 1 });
+            Assert.IsNotNull(retrieved);
+            Assert.AreEqual("", (retrieved as TimelinePost)?.Title);
+            Assert.AreEqual("", (retrieved as TimelinePost)?.Content);
         }
 
         #endregion
@@ -186,6 +231,34 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
             var updated = _postRepo.FindById(new PostId { Value = 1 });
             Assert.AreEqual("New Title", (updated as SocialMediaPlatform.Reddit.Core.Domain.Posts.TimelinePost)?.Title);
             Assert.AreEqual("Content", (updated as SocialMediaPlatform.Reddit.Core.Domain.Posts.TimelinePost)?.Content);
+        }
+
+        [TestMethod]
+        public void Update_PostWithEmptyTitle_ShouldUpdateSuccessfully()
+        {
+            var post = TestDataFactory.CreateTestPost(id: 1, authorId: 1, title: "Original", content: "Content");
+            _postRepo.Save(post);
+
+            var timelinePost = post as TimelinePost;
+            timelinePost.Title = "";
+            _postRepo.Update(post);
+
+            var retrieved = _postRepo.FindById(new PostId { Value = 1 });
+            Assert.AreEqual("", (retrieved as TimelinePost)?.Title);
+        }
+
+        [TestMethod]
+        public void Update_PostWithEmptyContent_ShouldUpdateSuccessfully()
+        {
+            var post = TestDataFactory.CreateTestPost(id: 1, authorId: 1, title: "Title", content: "Original");
+            _postRepo.Save(post);
+
+            var timelinePost = post as TimelinePost;
+            timelinePost.Content = "";
+            _postRepo.Update(post);
+
+            var retrieved = _postRepo.FindById(new PostId { Value = 1 });
+            Assert.AreEqual("", (retrieved as TimelinePost)?.Content);
         }
 
         #endregion

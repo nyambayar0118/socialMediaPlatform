@@ -34,6 +34,13 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
             _dbSetup?.Dispose();
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Constructor_NullConnection_ShouldThrowArgumentNullException()
+        {
+            var repo = new ReactionRepoSqlite(null);
+        }
+
         #region Save Tests
 
         [TestMethod]
@@ -135,6 +142,49 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
         #endregion
 
         #region CountByTarget Tests
+
+        [TestMethod]
+        public void CountByTarget_MapperPreservesAllReactionData_ShouldMapCorrectly()
+        {
+            var upvote = TestDataFactory.CreateTestUpvote(targetId: 1, authorId: 1, targetType: ReactionTargetType.Post);
+            _reactionRepo.Save(upvote);
+
+            var downvote = TestDataFactory.CreateTestDownvote(targetId: 1, authorId: 2, targetType: ReactionTargetType.Post);
+            _reactionRepo.Save(downvote);
+
+            var counts = _reactionRepo.CountByTarget(1, ReactionTargetType.Post);
+
+            Assert.AreEqual(1u, counts["Upvote"]);
+            Assert.AreEqual(1u, counts["Downvote"]);
+        }
+
+        [TestMethod]
+        public void ExistsByUserAndTarget_MapperHandlesDifferentReactionTypes_ShouldReturnCorrectly()
+        {
+            _reactionRepo.Save(TestDataFactory.CreateTestUpvote(targetId: 1, authorId: 1));
+
+            var existsUpvote = _reactionRepo.ExistsByUserAndTarget(new UserId { Value = 1 }, 1, ReactionTargetType.Post);
+            Assert.IsTrue(existsUpvote);
+
+            var existsDownvote = _reactionRepo.ExistsByUserAndTarget(new UserId { Value = 2 }, 1, ReactionTargetType.Post);
+            Assert.IsFalse(existsDownvote);
+        }
+
+        [TestMethod]
+        public void CountByTarget_MapperPreservesReactionTypes_UpvoteAndDownvoteDistinct()
+        {
+            _reactionRepo.Save(TestDataFactory.CreateTestUpvote(targetId: 1, authorId: 1));
+            _reactionRepo.Save(TestDataFactory.CreateTestUpvote(targetId: 1, authorId: 2));
+            _reactionRepo.Save(TestDataFactory.CreateTestDownvote(targetId: 1, authorId: 3));
+
+            var counts = _reactionRepo.CountByTarget(1, ReactionTargetType.Post);
+
+            // Verify mapper correctly distinguished upvotes from downvotes
+            Assert.IsTrue(counts.ContainsKey("Upvote"));
+            Assert.IsTrue(counts.ContainsKey("Downvote"));
+            Assert.AreEqual(2u, counts["Upvote"]);
+            Assert.AreEqual(1u, counts["Downvote"]);
+        }
 
         [TestMethod]
         public void CountByTarget_NoReactions_ShouldReturnEmptyDictionary()
