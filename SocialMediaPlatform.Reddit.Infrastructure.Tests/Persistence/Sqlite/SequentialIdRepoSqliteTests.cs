@@ -5,12 +5,18 @@ using SocialMediaPlatform.Reddit.Infrastructure.Tests.Connections;
 
 namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
 {
+    /// <summary>
+    /// Дараалсан ID хадгалах ба авах репозитори классын тестүүдийг агуулсан тест класс.
+    /// </summary>
     [TestClass]
     public class SequentialIdRepoSqliteTests
     {
+        // Өгөгдлийн сангийн холболтын объект
         private TestConnection _dbSetup;
+        // Дараалсан ID хадгалах ба авах репозитори объект
         private SequentialIdRepoSqlite _idRepo;
 
+        // Тестийг initialize хийх метод.
         [TestInitialize]
         public void Setup()
         {
@@ -18,6 +24,9 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
             _idRepo = new SequentialIdRepoSqlite(_dbSetup.Connection);
         }
 
+        /// <summary>
+        /// Тестийн дараах ашигласан нөөцүүдийг цэвэрлэх метод.
+        /// </summary>
         [TestCleanup]
         public void Cleanup()
         {

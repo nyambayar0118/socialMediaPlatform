@@ -8,12 +8,20 @@ using SocialMediaPlatform.Reddit.Infrastructure.Tests.Connections;
 
 namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
 {
+    /// <summary>
+    /// Хэрэглэгчийг хадгалах ба авах репозитори классын тестүүдийг агуулсан тест класс.
+    /// </summary>
     [TestClass]
     public class UserRepoSqliteTests
     {
+        // Өгөгдлийн сангийн холболтын объект
         private TestConnection _dbSetup;
+        // Хэрэглэгчийг хадгалах ба авах репозитори объект
         private UserRepoSqlite _userRepo;
 
+        /// <summary>
+        /// Тестийг initialize хийх метод.
+        /// </summary>
         [TestInitialize]
         public void Setup()
         {
@@ -21,6 +29,9 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
             _userRepo = new UserRepoSqlite(_dbSetup.Connection);
         }
 
+        /// <summary>
+        /// Тестийн дараах ашигласан нөөцүүдийг цэвэрлэх метод.
+        /// </summary>
         [TestCleanup]
         public void Cleanup()
         {

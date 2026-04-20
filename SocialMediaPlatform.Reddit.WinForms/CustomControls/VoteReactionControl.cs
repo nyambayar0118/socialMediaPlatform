@@ -6,14 +6,25 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace SocialMediaPlatform.Reddit.WinForms.CustomControls
 {
+    /// <summary>
+    /// Хэрэглэгчийн хариу үйлдэл үзүүлэх Custom Control товч
+    /// </summary>
     public partial class VoteReactionControl : UserControl
     {
+        // Нийт хариу үйлдлийн тоо
         private int _voteCount;
+        // Одоогийн хэрэглэгчийн дарсан хариу үйлдэл
         private int _currentUserVote;
+
+        // Товч дээр хулганыг аваачсан эсэхийг хадгалах төлөв
         private bool _hoverUpButton;
         private bool _hoverDownButton;
+        
+        // Одоо харуулж буй тоон утга
         private float _displayedCount;
+        // Хөдөлгөөний хугацааны объект
         private Timer _animationTimer;
+        // Шилжиж очих тоон утга
         private int _targetCount;
 
         public int VoteCount
@@ -44,45 +55,66 @@ namespace SocialMediaPlatform.Reddit.WinForms.CustomControls
             }
         }
 
+        // Custom event
         public event EventHandler<VoteChangedEventArgs> OnVoteChanged;
 
+        /// <summary>
+        ///  Байгуулагч функц
+        /// </summary>
         public VoteReactionControl()
         {
+            // Custom control-ийн хэмжээг тохируулж өгнө
             this.DoubleBuffered = true;
             this.Width = 120;
             this.Height = 40;
             this.BackColor = Color.Transparent;
             this.Cursor = Cursors.Hand;
 
+            // Харуулах тоон утгын анхны утгыг онооно
             _displayedCount = 0;
             _targetCount = 0;
             _currentUserVote = 0;
 
+            // Хөдөлгөөний timer объектыг initialize хийж, өөрчлөгдөх interval-ийг тохируулна
             _animationTimer = new Timer();
             _animationTimer.Interval = 16;
             _animationTimer.Tick += AnimationTimer_Tick;
         }
 
+        /// <summary>
+        /// Custom control-ийг зурах метод
+        /// </summary>
+        /// <param name="pe"></param>
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
 
+            // Хэрэгдэхгүй төлөвтэй бол буцаана
             if (!this.Visible)
                 return;
 
+            // Grahpic объектыг үүсгээд тохируулна
             Graphics g = pe.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
+            // Control-ийн хэсгүүдийг агуулах тэгш өнцөгтүүдийг зурна
             Rectangle upRect = new Rectangle(8, 4, 32, 32);
             Rectangle countRect = new Rectangle(48, 4, 24, 32);
             Rectangle downRect = new Rectangle(80, 4, 32, 32);
 
+            // Control-ийн бүрэлдэхүүн хэсгүүдийг зурна
             DrawButton(g, upRect, true);
             DrawCount(g, countRect);
             DrawButton(g, downRect, false);
         }
 
+        /// <summary>
+        /// Custom control-ийн Upvote болон Downvote хариу үйлдлийн товчийг зурах метод
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="rect"></param>
+        /// <param name="isUpButton"></param>
         private void DrawButton(Graphics g, Rectangle rect, bool isUpButton)
         {
             Color buttonColor;
@@ -154,6 +186,11 @@ namespace SocialMediaPlatform.Reddit.WinForms.CustomControls
             }
         }
 
+        /// <summary>
+        /// Custom control-ийн хариу үйлдлийн тоог зурах метод
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="countRect"></param>
         private void DrawCount(Graphics g, Rectangle countRect)
         {
             Color countColor;
@@ -183,6 +220,10 @@ namespace SocialMediaPlatform.Reddit.WinForms.CustomControls
             }
         }
 
+        /// <summary>
+        /// Custom control дээр хулганыг аваачих event handler метод
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -202,6 +243,10 @@ namespace SocialMediaPlatform.Reddit.WinForms.CustomControls
             }
         }
 
+        /// <summary>
+        /// Custom control дээр хулганаар дарах event handler метод
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -239,6 +284,10 @@ namespace SocialMediaPlatform.Reddit.WinForms.CustomControls
             }
         }
 
+        /// <summary>
+        /// Custom control-оос хулганыг холдуулах event handler метод
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
@@ -248,6 +297,11 @@ namespace SocialMediaPlatform.Reddit.WinForms.CustomControls
             Invalidate();
         }
 
+        /// <summary>
+        /// Custom control-ийг хөдөлгөөнжүүлэх метод
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AnimationTimer_Tick(object sender, EventArgs e)
         {
             if (Math.Abs(_displayedCount - _targetCount) > 0.01f)
@@ -265,6 +319,10 @@ namespace SocialMediaPlatform.Reddit.WinForms.CustomControls
             }
         }
 
+        /// <summary>
+        /// Custom control-ийг зурахаа болих үед ашигласан нөөцийг чөлөөлөх метод
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

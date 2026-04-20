@@ -7,13 +7,22 @@ using SocialMediaPlatform.Reddit.Infrastructure.Tests.Factories;
 
 namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
 {
+    /// <summary>
+    /// Post-ийн хадгалах ба авах репозитори классын тестүүдийг агуулсан тест класс.
+    /// </summary>
     [TestClass]
     public class PostRepoSqliteTests
     {
+        // Өгөгдлийн сангийн холболтын объект
         private TestConnection _dbSetup;
+        // Post-ийн хадгалах ба авах репозитори объект
         private PostRepoSqlite _postRepo;
+        // Хэрэглэгчийн хадгалах ба авах репозитори объект
         private UserRepoSqlite _userRepo;
 
+        /// <summary>
+        /// Тестийг initialize хийх метод.
+        /// </summary>
         [TestInitialize]
         public void Setup()
         {
@@ -25,6 +34,9 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
             _userRepo.Save(author);
         }
 
+        /// <summary>
+        /// Тестийн дараах ашигласан нөөцүүдийг цэвэрлэх метод.
+        /// </summary>
         [TestCleanup]
         public void Cleanup()
         {

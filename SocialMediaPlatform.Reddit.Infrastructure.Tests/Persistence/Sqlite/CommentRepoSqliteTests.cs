@@ -6,14 +6,24 @@ using SocialMediaPlatform.Reddit.Infrastructure.Tests.Connections;
 
 namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
 {
+    /// <summary>
+    /// Сэтгэгдлийн өгөгдлийн сангийн репозитори классын тестүүдийг агуулсан класс.
+    /// </summary>
     [TestClass]
     public class CommentRepoSqliteTests
     {
+        // Өгөгдлийн сангийн холболтын объект
         private TestConnection _dbSetup;
+        // Сэтгэгдлийн репозитори объект
         private CommentRepoSqlite _commentRepo;
+        // Хэрэглэгчийн репозитори объект
         private UserRepoSqlite _userRepo;
+        // Post-ийн репозитори объект
         private PostRepoSqlite _postRepo;
 
+        /// <summary>
+        /// Тестийг initialize хийх метод.
+        /// </summary>
         [TestInitialize]
         public void Setup()
         {
@@ -29,6 +39,9 @@ namespace SocialMediaPlatform.Reddit.Infrastructure.Tests.Persistence.Sqlite
             _postRepo.Save(post);
         }
 
+        /// <summary>
+        /// Тестийн дараах ашигласан нөөцүүдийг цэвэрлэх метод.
+        /// </summary>
         [TestCleanup]
         public void Cleanup()
         {
