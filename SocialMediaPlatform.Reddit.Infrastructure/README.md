@@ -3,7 +3,7 @@
 ## 📁 Сангийн файлын бүтэц
 
 ```
-Reddit.Core/
+Reddit.Core.Infrastructure/
     │   AppConfig.cs                                - Аппликейшний үндсэн хэсгүүдийг initialize хийж өгөх класс
     │   README.md                                   - Энэ файл
     │   SocialMediaPlatform.Reddit.Infrastructure.csproj    - Сангийн үндсэн тохиргооны файл
